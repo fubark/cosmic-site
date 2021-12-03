@@ -19,6 +19,7 @@ function initStdxImports(wasm) {
                 .then(resp => resp.arrayBuffer())
                 .then(buf => {
                     if (wasm.inputCap < buf.byteLength) {
+                        console.log('here');
                         const ptr = wasm.exports.wasmEnsureInputCapacity(buf.byteLength);
                         const view = new DataView(wasm.exports.memory.buffer);
                         wasm.inputPtr = view.getUint32(ptr, true);
