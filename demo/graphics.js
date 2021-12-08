@@ -12,6 +12,7 @@ function initGraphicsImports(wasm, canvas) {
     const pi_2 = 2 * Math.PI;
     let fillColor = [];
     let strokeColor = [];
+    let clearColor = 'black';
     const images = new Map();
     let nextImageId = 1; 
 
@@ -28,16 +29,29 @@ function initGraphicsImports(wasm, canvas) {
         return id;
     }
 
+    const dpr = window.devicePixelRatio || 1;
+    let css_width = 0;
+    let css_height = 0;
+
     return {
         jsSetCanvasBuffer(width, height) {
-            const dpr = window.devicePixelRatio || 1;
-            canvas.style.width = `${width / dpr}px`;
-            canvas.style.height = `${height / dpr}px`;
-            canvas.width = width;
-            canvas.height = height;
+            canvas.style.width = `${width}px`;
+            canvas.style.height = `${height}px`;
+            canvas.width = width * dpr;
+            canvas.height = height * dpr;
+            css_width = width;
+            css_height = height;
             // Start drawing glyphs from top left corner.
             // Needs to be set after changing canvas buffer.
             ctx.textBaseline = 'top';
+        },
+        jsBeginFrame() {
+            ctx.scale(dpr, dpr);
+            ctx.fillStyle = clearColor;
+            ctx.fillRect(0, 0, css_width, css_height);
+        },
+        jsSetClearColor(r, g, b, a) {
+            clearColor = `rgba(${r},${g},${b},${a})`;
         },
         jsFillStyle(r, g, b, a) {
             fillColor = [r, g, b, a];
@@ -211,6 +225,7 @@ function initGraphicsImports(wasm, canvas) {
         },
         jsResetTransform() {
             ctx.resetTransform();
+            ctx.scale(dpr, dpr);
         },
         jsFill() {
             ctx.fill();
@@ -241,6 +256,8 @@ function initGraphicsImports(wasm, canvas) {
                 .then(buf => {
                     let blob;
                     if (svg) {
+                        // NOTE: Firefox requires width and height attributes on the svg element or it won't load the image:
+                        // https://bugzilla.mozilla.org/show_bug.cgi?id=700533
                         blob = new Blob([buf], {type: 'image/svg+xml'});
                     } else {
                         blob = new Blob([buf]);
