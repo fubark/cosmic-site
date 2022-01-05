@@ -1,31 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1">
  	<link rel="stylesheet" href="pico.min.css" />
 	<style>
+		[data-theme="light"], :root:not([data-theme="dark"]) {
+			--h1-color: #039be5;
+		}
 	</style>
 	<title>Cosmic</title>
 </head>
 <body>
-	<header class="container">
-		<hgroup>
-        	<h1>Cosmic</h1>
-        	<h2>Build software with <b>JavaScript</b> and <b>WASM</b>.</h2>
-	  	</hgroup>
-	  	<nav>
-			<ul>
-			  <li>Download (v0.1 Alpha)</li>
-			  <li>Docs</li>
-			  <li><a href="https://github.com/fubark/cosmic">Github</a></li>
-				<!--
-			  <li><a href="#" data-theme-switcher="auto">Auto</a></li>
-			  <li><a href="#" data-theme-switcher="light">Light</a></li>
-			  <li><a href="#" data-theme-switcher="dark">Dark</a></li>
--->
-			</ul>
-	  	</nav>
+	<header class="container-fluid" style="background-color: #f4f4f4;">
+		<div class="container">
+			<hgroup>
+				<h1>Cosmic</h1>
+				<h2>Build software with <b>JavaScript</b> and <b>WASM</b>.</h2>
+			</hgroup>
+			<nav>
+				<ul>
+				  <li>Download (v0.1 Alpha)</li>
+				  <li>Docs</li>
+				  <li><a href="https://github.com/fubark/cosmic">Github</a></li>
+					<!--
+				  <li><a href="#" data-theme-switcher="auto">Auto</a></li>
+				  <li><a href="#" data-theme-switcher="light">Light</a></li>
+				  <li><a href="#" data-theme-switcher="dark">Dark</a></li>
+	-->
+				</ul>
+			</nav>
+		</div>
 	</header>
 	<main class="container">
 		<section id="uses">
