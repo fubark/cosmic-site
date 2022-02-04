@@ -1,0 +1,38 @@
+name: Gen Docs
+
+on:
+  workflow_dispatch:
+
+jobs:
+  main:
+    name: Main Job.
+    runs-on: ubuntu-20.04
+    env:
+    steps:
+      - name: Clone repo.
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 1
+          ref: 'gh-pages'
+
+      - name: Install zig.
+        uses: goto-bus-stop/setup-zig@v1
+        with:
+          version: 0.9.0
+
+      - name: Clone cosmic repo.
+        run: git clone --depth=1 https://github.com/fubark/cosmic.git cosmic
+
+      - name: Get deps.
+        run: cd cosmic && zig build get-deps 
+
+      - name: Gen docs.
+        run: cd cosmic && zig build gen-docs -Darg="../docs"
+
+      - name: Commit.
+        run: |
+          git config user.name "Docs Bot"
+          git config user.email "bot@noreply.com"
+          git add docs
+          git commit -m "Update docs."
+          git push origin master
