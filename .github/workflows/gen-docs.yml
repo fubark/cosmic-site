@@ -34,4 +34,4 @@ jobs:
           git config user.email "bot@noreply.com"
           git add docs
           git commit -m "Update docs."
-          git push origin master
+          git push
