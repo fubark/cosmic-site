@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html data-theme="light">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="pico.min.css" />
+  <link rel="stylesheet" href="docs.css" />
+  <link rel="stylesheet" href="hljs-default.min.css" />
+  <link rel="stylesheet" href="hljs-vs.min.css" />
+  <title>Cosmic Docs | v0.1</title>
+</head>
+<body>
+  <main class="container-fluid"><aside><div>
+<h3><span class="primary">Cosmic</span> Docs</h3>
+<nav><select><option value="/docs">v0.1</option></select><section class="main-links"><ul><li><a href="index.html#about">About</a></li><li><a href="index.html#start">Getting Started</a></li><li><a href="index.html#tools">Tools</a></li><li><a href="index.html#community">Community</a></li></ul></section><section><div class="category secondary">API</div><ul><li><a id="core" href="core.html">cs.core</a></li><li><a id="files" href="files.html">cs.files</a></li><li><a id="graphics" href="graphics.html">cs.graphics</a></li><li><a id="http" href="http.html">cs.http</a></li><li><a id="input" href="input.html">cs.input</a></li><li><a id="net" href="net.html">cs.net</a></li><li><a id="test" href="test.html">cs.test</a></li><li><a id="window" href="window.html">cs.window</a></li><li><a id="worker" href="worker.html">cs.worker</a></li></ul></section></nav></div></aside><div class="docs"><mark class="ns">cs.files</mark>
+<h3>File System</h3>
+<p>Provides a cross platform API to create and manage files. Functions with path params can be absolute or relative to the cwd.</p><div class="func">
+  <a id="read" href="#"><small class="secondary">cs.files.</small>read</a> <span class="params">(&nbsp;<span class="param">path: <span class="secondary">string</span></span> )</span> <span class="return">Uint8Array</span></div>
+<p class="func-desc">Reads a file as raw bytes. Returns the contents on success or null.</p><div class="func">
+  <a id="readAsync" href="#"><small class="secondary">cs.files.</small>readAsync</a> <span class="params">(&nbsp;<span class="param">path: <span class="secondary">string</span></span> )</span> <span class="return">Promise</span></div>
+<p class="func-desc"></p><div class="func">
+  <a id="readText" href="#"><small class="secondary">cs.files.</small>readText</a> <span class="params">(&nbsp;<span class="param">path: <span class="secondary">string</span></span> )</span> <span class="return">string</span></div>
+<p class="func-desc">Reads a file as a UTF-8 string. Returns the contents on success or null.</p><div class="func">
+  <a id="readTextAsync" href="#"><small class="secondary">cs.files.</small>readTextAsync</a> <span class="params">(&nbsp;<span class="param">path: <span class="secondary">string</span></span> )</span> <span class="return">Promise</span></div>
+<p class="func-desc"></p><div class="func">
+  <a id="write" href="#"><small class="secondary">cs.files.</small>write</a> <span class="params">(&nbsp;<span class="param">path: <span class="secondary">string</span></span>, <span class="param">buffer: <span class="secondary">Uint8Array</span></span> )</span> <span class="return">boolean</span></div>
+<p class="func-desc">Writes raw bytes to a file. If the file already exists, it's replaced. Returns true on success or false.</p><div class="func">
+  <a id="writeAsync" href="#"><small class="secondary">cs.files.</small>writeAsync</a> <span class="params">(&nbsp;<span class="param">path: <span class="secondary">string</span></span>, <span class="param">buffer: <span class="secondary">Uint8Array</span></span> )</span> <span class="return">Promise</span></div>
+<p class="func-desc"></p><div class="func">
+  <a id="writeText" href="#"><small class="secondary">cs.files.</small>writeText</a> <span class="params">(&nbsp;<span class="param">path: <span class="secondary">string</span></span>, <span class="param">str: <span class="secondary">string</span></span> )</span> <span class="return">boolean</span></div>
+<p class="func-desc">Writes UTF-8 text to a file. If the file already exists, it's replaced. Returns true on success or false.</p><div class="func">
+  <a id="writeTextAsync" href="#"><small class="secondary">cs.files.</small>writeTextAsync</a> <span class="params">(&nbsp;<span class="param">path: <span class="secondary">string</span></span>, <span class="param">str: <span class="secondary">string</span></span> )</span> <span class="return">Promise</span></div>
+<p class="func-desc"></p><div class="func">
+  <a id="append" href="#"><small class="secondary">cs.files.</small>append</a> <span class="params">(&nbsp;<span class="param">path: <span class="secondary">string</span></span>, <span class="param">buffer: <span class="secondary">Uint8Array</span></span> )</span> <span class="return">boolean</span></div>
+<p class="func-desc">Appends raw bytes to a file. File is created if it doesn't exist. Returns true on success or false.</p><div class="func">
+  <a id="appendAsync" href="#"><small class="secondary">cs.files.</small>appendAsync</a> <span class="params">(&nbsp;<span class="param">path: <span class="secondary">string</span></span>, <span class="param">buffer: <span class="secondary">Uint8Array</span></span> )</span> <span class="return">Promise</span></div>
+<p class="func-desc"></p><div class="func">
+  <a id="appendText" href="#"><small class="secondary">cs.files.</small>appendText</a> <span class="params">(&nbsp;<span class="param">path: <span class="secondary">string</span></span>, <span class="param">str: <span class="secondary">string</span></span> )</span> <span class="return">boolean</span></div>
+<p class="func-desc">Appends UTF-8 text to a file. File is created if it doesn't exist. Returns true on success or false.</p><div class="func">
+  <a id="appendTextAsync" href="#"><small class="secondary">cs.files.</small>appendTextAsync</a> <span class="params">(&nbsp;<span class="param">path: <span class="secondary">string</span></span>, <span class="param">str: <span class="secondary">string</span></span> )</span> <span class="return">Promise</span></div>
+<p class="func-desc"></p><div class="func">
+  <a id="copy" href="#"><small class="secondary">cs.files.</small>copy</a> <span class="params">(&nbsp;<span class="param">from: <span class="secondary">string</span></span>, <span class="param">to: <span class="secondary">string</span></span> )</span> <span class="return">boolean</span></div>
+<p class="func-desc">Copies a file.</p><div class="func">
+  <a id="copyAsync" href="#"><small class="secondary">cs.files.</small>copyAsync</a> <span class="params">(&nbsp;<span class="param">from: <span class="secondary">string</span></span>, <span class="param">to: <span class="secondary">string</span></span> )</span> <span class="return">Promise</span></div>
+<p class="func-desc"></p><div class="func">
+  <a id="move" href="#"><small class="secondary">cs.files.</small>move</a> <span class="params">(&nbsp;<span class="param">from: <span class="secondary">string</span></span>, <span class="param">to: <span class="secondary">string</span></span> )</span> <span class="return">boolean</span></div>
+<p class="func-desc">Moves a file.</p><div class="func">
+  <a id="moveAsync" href="#"><small class="secondary">cs.files.</small>moveAsync</a> <span class="params">(&nbsp;<span class="param">from: <span class="secondary">string</span></span>, <span class="param">to: <span class="secondary">string</span></span> )</span> <span class="return">Promise</span></div>
+<p class="func-desc"></p><div class="func">
+  <a id="cwd" href="#"><small class="secondary">cs.files.</small>cwd</a> <span class="params">(&nbsp; )</span> <span class="return">string</span></div>
+<p class="func-desc">Returns the absolute path of the current working directory.</p><div class="func">
+  <a id="getPathInfo" href="#"><small class="secondary">cs.files.</small>getPathInfo</a> <span class="params">(&nbsp;<span class="param">path: <span class="secondary">string</span></span> )</span> <span class="return">PathInfo</span></div>
+<p class="func-desc">Returns info about a file, folder, or special object at a given path.</p><div class="func">
+  <a id="getPathInfoAsync" href="#"><small class="secondary">cs.files.</small>getPathInfoAsync</a> <span class="params">(&nbsp;<span class="param">path: <span class="secondary">string</span></span> )</span> <span class="return">Promise</span></div>
+<p class="func-desc"></p><div class="func">
+  <a id="listDir" href="#"><small class="secondary">cs.files.</small>listDir</a> <span class="params">(&nbsp;<span class="param">path: <span class="secondary">string</span></span> )</span> <span class="return">[]FileEntry</span></div>
+<p class="func-desc">List the files in a directory. This is not recursive.</p><div class="func">
+  <a id="listDirAsync" href="#"><small class="secondary">cs.files.</small>listDirAsync</a> <span class="params">(&nbsp;<span class="param">path: <span class="secondary">string</span></span> )</span> <span class="return">Promise</span></div>
+<p class="func-desc"></p><div class="func">
+  <a id="ensurePath" href="#"><small class="secondary">cs.files.</small>ensurePath</a> <span class="params">(&nbsp;<span class="param">path: <span class="secondary">string</span></span> )</span> <span class="return">boolean</span></div>
+<p class="func-desc">Ensures that a path exists by creating parent directories as necessary.</p><div class="func">
+  <a id="ensurePathAsync" href="#"><small class="secondary">cs.files.</small>ensurePathAsync</a> <span class="params">(&nbsp;<span class="param">path: <span class="secondary">string</span></span> )</span> <span class="return">Promise</span></div>
+<p class="func-desc"></p><div class="func">
+  <a id="pathExists" href="#"><small class="secondary">cs.files.</small>pathExists</a> <span class="params">(&nbsp;<span class="param">path: <span class="secondary">string</span></span> )</span> <span class="return">boolean</span></div>
+<p class="func-desc">Returns whether something exists at a path.</p><div class="func">
+  <a id="pathExistsAsync" href="#"><small class="secondary">cs.files.</small>pathExistsAsync</a> <span class="params">(&nbsp;<span class="param">path: <span class="secondary">string</span></span> )</span> <span class="return">Promise</span></div>
+<p class="func-desc"></p><div class="func">
+  <a id="remove" href="#"><small class="secondary">cs.files.</small>remove</a> <span class="params">(&nbsp;<span class="param">path: <span class="secondary">string</span></span> )</span> <span class="return">boolean</span></div>
+<p class="func-desc">Removes a file.</p><div class="func">
+  <a id="removeAsync" href="#"><small class="secondary">cs.files.</small>removeAsync</a> <span class="params">(&nbsp;<span class="param">path: <span class="secondary">string</span></span> )</span> <span class="return">Promise</span></div>
+<p class="func-desc"></p><div class="func">
+  <a id="removeDir" href="#"><small class="secondary">cs.files.</small>removeDir</a> <span class="params">(&nbsp;<span class="param">path: <span class="secondary">string</span></span>, <span class="param">recursive: <span class="secondary">boolean</span></span> )</span> <span class="return">boolean</span></div>
+<p class="func-desc">Removes a directory.</p><div class="func">
+  <a id="removeDirAsync" href="#"><small class="secondary">cs.files.</small>removeDirAsync</a> <span class="params">(&nbsp;<span class="param">path: <span class="secondary">string</span></span>, <span class="param">recursive: <span class="secondary">boolean</span></span> )</span> <span class="return">Promise</span></div>
+<p class="func-desc"></p><div class="func">
+  <a id="resolvePath" href="#"><small class="secondary">cs.files.</small>resolvePath</a> <span class="params">(&nbsp;<span class="param">path: <span class="secondary">string</span></span> )</span> <span class="return">string</span></div>
+<p class="func-desc">Resolves '..' in the path and returns an absolute path. Currently does not resolve home '~'.</p><div class="type">
+  <a id="FileKind" href="#"><small class="secondary">cs.files</small>.FileKind</a> <span class="params">enum</span><div class="constant">
+  <a id="BlockDevice" href="#"><small class="secondary">cs.files.</small>FileKind.BlockDevice</a></div><div class="constant">
+  <a id="CharacterDevice" href="#"><small class="secondary">cs.files.</small>FileKind.CharacterDevice</a></div><div class="constant">
+  <a id="Directory" href="#"><small class="secondary">cs.files.</small>FileKind.Directory</a></div><div class="constant">
+  <a id="NamedPipe" href="#"><small class="secondary">cs.files.</small>FileKind.NamedPipe</a></div><div class="constant">
+  <a id="SymLink" href="#"><small class="secondary">cs.files.</small>FileKind.SymLink</a></div><div class="constant">
+  <a id="File" href="#"><small class="secondary">cs.files.</small>FileKind.File</a></div><div class="constant">
+  <a id="UnixDomainSocket" href="#"><small class="secondary">cs.files.</small>FileKind.UnixDomainSocket</a></div><div class="constant">
+  <a id="Whiteout" href="#"><small class="secondary">cs.files.</small>FileKind.Whiteout</a></div><div class="constant">
+  <a id="Door" href="#"><small class="secondary">cs.files.</small>FileKind.Door</a></div><div class="constant">
+  <a id="EventPort" href="#"><small class="secondary">cs.files.</small>FileKind.EventPort</a></div><div class="constant">
+  <a id="Unknown" href="#"><small class="secondary">cs.files.</small>FileKind.Unknown</a></div></div>
+<p class="type-desc"></p><div class="type">
+  <a id="PathInfo" href="#"><small class="secondary">cs.files</small>.PathInfo</a> <span class="params">object</span><div class="indent field"><span class="primary">kind</span>: FileKind</div></div>
+<p class="type-desc"></p><div class="type">
+  <a id="FileEntry" href="#"><small class="secondary">cs.files</small>.FileEntry</a> <span class="params">object</span><div class="indent field"><span class="primary">name</span>: string</div><div class="indent field"><span class="primary">kind</span>: string</div></div>
+<p class="type-desc"></p></div><aside class="symbols"><div>
+<nav><ul><li><a href="#read">read()</a></li><li><a href="#readAsync">readAsync()</a></li><li><a href="#readText">readText()</a></li><li><a href="#readTextAsync">readTextAsync()</a></li><li><a href="#write">write()</a></li><li><a href="#writeAsync">writeAsync()</a></li><li><a href="#writeText">writeText()</a></li><li><a href="#writeTextAsync">writeTextAsync()</a></li><li><a href="#append">append()</a></li><li><a href="#appendAsync">appendAsync()</a></li><li><a href="#appendText">appendText()</a></li><li><a href="#appendTextAsync">appendTextAsync()</a></li><li><a href="#copy">copy()</a></li><li><a href="#copyAsync">copyAsync()</a></li><li><a href="#move">move()</a></li><li><a href="#moveAsync">moveAsync()</a></li><li><a href="#cwd">cwd()</a></li><li><a href="#getPathInfo">getPathInfo()</a></li><li><a href="#getPathInfoAsync">getPathInfoAsync()</a></li><li><a href="#listDir">listDir()</a></li><li><a href="#listDirAsync">listDirAsync()</a></li><li><a href="#ensurePath">ensurePath()</a></li><li><a href="#ensurePathAsync">ensurePathAsync()</a></li><li><a href="#pathExists">pathExists()</a></li><li><a href="#pathExistsAsync">pathExistsAsync()</a></li><li><a href="#remove">remove()</a></li><li><a href="#removeAsync">removeAsync()</a></li><li><a href="#removeDir">removeDir()</a></li><li><a href="#removeDirAsync">removeDirAsync()</a></li><li><a href="#resolvePath">resolvePath()</a></li><li><a href="#FileKind">FileKind</a></li><li><a href="#PathInfo">PathInfo</a></li><li><a href="#FileEntry">FileEntry</a></li></ul></nav></div></aside></main> <script>
+     document.getElementById('files').focus();
+ </script><script src="highlight.min.js"></script>
+<script>
+  hljs.highlightAll();
+</script></body></html>

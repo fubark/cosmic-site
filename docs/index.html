@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html data-theme="light">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="pico.min.css" />
+  <link rel="stylesheet" href="docs.css" />
+  <link rel="stylesheet" href="hljs-default.min.css" />
+  <link rel="stylesheet" href="hljs-vs.min.css" />
+  <title>Cosmic Docs | v0.1</title>
+</head>
+<body>
+  <main class="container-fluid"><aside><div>
+<h3><span class="primary">Cosmic</span> Docs</h3>
+<nav><select><option value="/docs">v0.1</option></select><section class="main-links"><ul><li><a href="index.html#about">About</a></li><li><a href="index.html#start">Getting Started</a></li><li><a href="index.html#tools">Tools</a></li><li><a href="index.html#community">Community</a></li></ul></section><section><div class="category secondary">API</div><ul><li><a id="core" href="core.html">cs.core</a></li><li><a id="files" href="files.html">cs.files</a></li><li><a id="graphics" href="graphics.html">cs.graphics</a></li><li><a id="http" href="http.html">cs.http</a></li><li><a id="input" href="input.html">cs.input</a></li><li><a id="net" href="net.html">cs.net</a></li><li><a id="test" href="test.html">cs.test</a></li><li><a id="window" href="window.html">cs.window</a></li><li><a id="worker" href="worker.html">cs.worker</a></li></ul></section></nav></div></aside><div class="docs"><a href="#" id="about"></a>
+<h3>Cosmic</h3>
+<p>
+    Cosmic is a simple Javascript and WASM runtime for developing Desktop, Gaming, Backend, and Web applications.
+    Our approach is to start with V8 (the fastest script engine) and design a rich API and tools around it.
+    To get a gauge of what Cosmic can do now, check out the docs for each API module as well as the <a href="#tools">Tools</a> section.
+</p>
+<h6>Native API</h6>
+<p>
+    One of the goals of Cosmic is to provide a cross platform Js/Wasm API to do all the neat things your computer can do.
+    This means having a window API, a 2D/3D graphics API, a multimedia API, a networking API, a file system API, and more.
+    On top of these basic layers, Cosmic will also provide higher level constructs like a UI framework, an animation API, and more.
+</p>
+<p>
+    Supporting the Web/Node API is a non goal, but we do want to enable similar capabilities. For example, we have implemented "fetch"
+    as making http requests from the <a href="http.html">cs.http</a> module.
+    Once the Cosmic API is fleshed out more, it shouldn't be hard for one to create a Web polyfill in pure JS. 
+</p>
+<h6>Conventions</h6>
+<p>
+    If you've come from Web or Node development you might be wondering how different it is to code in Cosmic:
+</p>
+<ul>
+    <li>
+        <b>Importing:</b> We want to support ES modules as the way to import code from local and the web. This is currently not implemented but it is a priority.
+        Support for node npm packages is a non goal and will only be considered depending on demand.
+    </li>
+    <li>
+        <b>Async:</b> All API functions that have an async alternative are synchronous by default.
+        For example, <a href="http.html#get">cs.http.get()</a> is synchronous and the async version will be <a href="http.html#getAsync">cs.http.getAsync()</a>.
+        Code having clear intentions is a goal for Cosmic.
+        One should feel that they can accomplish anything synchronously and only reach for async when they are ready to or planned to.
+    </li>
+    <li>
+        <b>Errors:</b> Synchronous functions will never throw an exception.
+        null will be returned instead and a follow up errCode() or errString() will get you info about the error.
+        Exceptions are evil and is an example of hidden control flow we wish to avoid in Cosmic.
+        Async promises will be rejected with the error info. errCode and errString are not currently implemented but they are priority features.
+    </li>
+</ul>
+<p>
+    We are aiming to make coding accessible, unrestrictive, productive, fast, and fun! Like what you see? Join our <a href="#community">community</a> and voice your opinions!
+</p>
+
+<h3></h3>
+<p></p>
+
+<a href="#" id="install"></a>
+<h3>Install</h3>
+<p>
+    Download links are served from the home page: <a href="https://cosmic-js.com">cosmic-js.com</a>.
+    One liner cli install commands will make it here eventually.
+</p>
+
+<a href="#" id="start"></a>
+<h3>Getting Started</h3>
+<h6>Hello World</h6>
+<p>Open up your text editor and create hello.js:</p>
+<pre><code class="language-javascript">const Color = cs.graphics.Color
+
+printLine('Hello World!')
+
+const w = cs.window.create('Demo', 1200, 720)
+w.onUpdate(g => {
+    g.fontSize(52)
+    g.fillColor(Color.blue)
+    g.text(400, 300, 'Hello World!')
+})</code></pre>
+<p>Then run this in the terminal:</p>
+<pre><code class="language-bash">cosmic hello.js</code></pre>
+
+<p>You can find more examples <a href="https://github.com/fubark/cosmic/tree/master/examples">here</a>!</p>
+
+<a href="#" id="tools"></a>
+<h3>Tools</h3>
+<p>One of the goals for Cosmic is to provide useful tools to help you develop software.</p>
+
+<div><b>cosmic run</b> foo.js</div>
+<p>This runs your script with the cosmic runtime. You can also run foo.js with "cosmic foo.js".</p>
+<div><b>cosmic dev</b> foo.js</div>
+<p>This runs your script but also watches it for changes to do hot reloading. This feature is not implemented yet.</p>
+<div><b>cosmic test</b> foo.test.js</div>
+<p>Runs tests in foo.test.js.</p>
+<div><b>cosmic exe</b> foo.js</div>
+<p>Creates a single binary executable for your app at foo.js. This feature is not implemented yet.</p>
+<p>You'll also be able to target the Web as a platform and it will generate the html/js bundle you'll need.</p>
+<p>Eventually you'll be able to create an executable for a foreign target platform!</p>
+<div><b>cosmic serve-http</b> ./public</div>
+<p>Starts hosting a HTTP web server over your static files in the public directory. This feature is not implemented yet.</p>
+<div><b>cosmic serve-https</b> ./public my.crt my.key</div>
+<p>Like serve-http but secure. You'll need to supply your public and private keys. This feature is not implemented yet.</p>
+<div><b>cosmic shell</b></div>
+<p>Starts a shell where you can do some quick calculations or experiment before creating a script. This is the default command if no source files are provided.</p>
+<div><b>cosmic *more*</b></div>
+<p>Do you think we're missing something? Voice your opinion on Discord or open an issue on Github!</p>
+
+<a href="#" id="community"></a>
+<h3>Community</h3>
+<p>Links will make it here soon!</p>
+
+<a href="#" id="contribute"></a>
+<h3>Contributing</h3>
+<p>Head on over to the <a href="https://github.com/fubark/cosmic">github repo</a> to learn how to contribute!</p></div></main><script src="highlight.min.js"></script>
+<script>
+  hljs.highlightAll();
+</script></body></html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html data-theme="light">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="pico.min.css" />
+  <link rel="stylesheet" href="docs.css" />
+  <link rel="stylesheet" href="hljs-default.min.css" />
+  <link rel="stylesheet" href="hljs-vs.min.css" />
+  <title>Cosmic Docs | v0.1</title>
+</head>
+<body>
+  <main class="container-fluid"><aside><div>
+<h3><span class="primary">Cosmic</span> Docs</h3>
+<nav><select><option value="/docs">v0.1</option></select><section class="main-links"><ul><li><a href="index.html#about">About</a></li><li><a href="index.html#start">Getting Started</a></li><li><a href="index.html#tools">Tools</a></li><li><a href="index.html#community">Community</a></li></ul></section><section><div class="category secondary">API</div><ul><li><a id="core" href="core.html">cs.core</a></li><li><a id="files" href="files.html">cs.files</a></li><li><a id="graphics" href="graphics.html">cs.graphics</a></li><li><a id="http" href="http.html">cs.http</a></li><li><a id="input" href="input.html">cs.input</a></li><li><a id="net" href="net.html">cs.net</a></li><li><a id="test" href="test.html">cs.test</a></li><li><a id="window" href="window.html">cs.window</a></li><li><a id="worker" href="worker.html">cs.worker</a></li></ul></section></nav></div></aside><div class="docs"><mark class="ns">cs.input</mark>
+<h3>User Input</h3>
+<p>This API provides access to input devices connected to your computer like the keyboard and mouse. You'll need to create a <a href="window.html#create">Window</a> before you can register for events.</p><div class="type">
+  <a id="MouseDownEvent" href="#"><small class="secondary">cs.input</small>.MouseDownEvent</a> <span class="params">object</span><div class="indent field"><span class="primary">button</span>: MouseButton</div><div class="indent field"><span class="primary">x</span>: number</div><div class="indent field"><span class="primary">y</span>: number</div><div class="indent field"><span class="primary">clicks</span>: number</div></div>
+<p class="type-desc"></p><div class="type">
+  <a id="MouseUpEvent" href="#"><small class="secondary">cs.input</small>.MouseUpEvent</a> <span class="params">object</span><div class="indent field"><span class="primary">button</span>: MouseButton</div><div class="indent field"><span class="primary">x</span>: number</div><div class="indent field"><span class="primary">y</span>: number</div><div class="indent field"><span class="primary">clicks</span>: number</div></div>
+<p class="type-desc"></p><div class="type">
+  <a id="MouseButton" href="#"><small class="secondary">cs.input</small>.MouseButton</a> <span class="params">enum</span><div class="constant">
+  <a id="left" href="#"><small class="secondary">cs.input.</small>MouseButton.left</a></div><div class="constant">
+  <a id="middle" href="#"><small class="secondary">cs.input.</small>MouseButton.middle</a></div><div class="constant">
+  <a id="right" href="#"><small class="secondary">cs.input.</small>MouseButton.right</a></div><div class="constant">
+  <a id="x1" href="#"><small class="secondary">cs.input.</small>MouseButton.x1</a></div><div class="constant">
+  <a id="x2" href="#"><small class="secondary">cs.input.</small>MouseButton.x2</a></div></div>
+<p class="type-desc"></p><div class="type">
+  <a id="MouseMoveEvent" href="#"><small class="secondary">cs.input</small>.MouseMoveEvent</a> <span class="params">object</span><div class="indent field"><span class="primary">x</span>: number</div><div class="indent field"><span class="primary">y</span>: number</div></div>
+<p class="type-desc"></p><div class="type">
+  <a id="KeyDownEvent" href="#"><small class="secondary">cs.input</small>.KeyDownEvent</a> <span class="params">object</span><div class="indent field"><span class="primary">key</span>: Key</div><div class="indent field"><span class="primary">keyChar</span>: string</div><div class="indent field"><span class="primary">isRepeat</span>: boolean</div><div class="indent field"><span class="primary">shiftDown</span>: boolean</div><div class="indent field"><span class="primary">ctrlDown</span>: boolean</div><div class="indent field"><span class="primary">altDown</span>: boolean</div><div class="indent field"><span class="primary">metaDown</span>: boolean</div></div>
+<p class="type-desc"></p><div class="type">
+  <a id="KeyUpEvent" href="#"><small class="secondary">cs.input</small>.KeyUpEvent</a> <span class="params">object</span><div class="indent field"><span class="primary">key</span>: Key</div><div class="indent field"><span class="primary">keyChar</span>: string</div><div class="indent field"><span class="primary">shiftDown</span>: boolean</div><div class="indent field"><span class="primary">ctrlDown</span>: boolean</div><div class="indent field"><span class="primary">altDown</span>: boolean</div><div class="indent field"><span class="primary">metaDown</span>: boolean</div></div>
+<p class="type-desc"></p><div class="type">
+  <a id="Key" href="#"><small class="secondary">cs.input</small>.Key</a> <span class="params">enum</span><div class="constant">
+  <a id="unknown" href="#"><small class="secondary">cs.input.</small>Key.unknown</a></div><div class="constant">
+  <a id="backspace" href="#"><small class="secondary">cs.input.</small>Key.backspace</a></div><div class="constant">
+  <a id="tab" href="#"><small class="secondary">cs.input.</small>Key.tab</a></div><div class="constant">
+  <a id="enter" href="#"><small class="secondary">cs.input.</small>Key.enter</a></div><div class="constant">
+  <a id="shift" href="#"><small class="secondary">cs.input.</small>Key.shift</a></div><div class="constant">
+  <a id="control" href="#"><small class="secondary">cs.input.</small>Key.control</a></div><div class="constant">
+  <a id="alt" href="#"><small class="secondary">cs.input.</small>Key.alt</a></div><div class="constant">
+  <a id="pause" href="#"><small class="secondary">cs.input.</small>Key.pause</a></div><div class="constant">
+  <a id="capsLock" href="#"><small class="secondary">cs.input.</small>Key.capsLock</a></div><div class="constant">
+  <a id="escape" href="#"><small class="secondary">cs.input.</small>Key.escape</a></div><div class="constant">
+  <a id="space" href="#"><small class="secondary">cs.input.</small>Key.space</a></div><div class="constant">
+  <a id="pageUp" href="#"><small class="secondary">cs.input.</small>Key.pageUp</a></div><div class="constant">
+  <a id="pageDown" href="#"><small class="secondary">cs.input.</small>Key.pageDown</a></div><div class="constant">
+  <a id="end" href="#"><small class="secondary">cs.input.</small>Key.end</a></div><div class="constant">
+  <a id="home" href="#"><small class="secondary">cs.input.</small>Key.home</a></div><div class="constant">
+  <a id="arrowUp" href="#"><small class="secondary">cs.input.</small>Key.arrowUp</a></div><div class="constant">
+  <a id="arrowLeft" href="#"><small class="secondary">cs.input.</small>Key.arrowLeft</a></div><div class="constant">
+  <a id="arrowRight" href="#"><small class="secondary">cs.input.</small>Key.arrowRight</a></div><div class="constant">
+  <a id="arrowDown" href="#"><small class="secondary">cs.input.</small>Key.arrowDown</a></div><div class="constant">
+  <a id="printScreen" href="#"><small class="secondary">cs.input.</small>Key.printScreen</a></div><div class="constant">
+  <a id="insert" href="#"><small class="secondary">cs.input.</small>Key.insert</a></div><div class="constant">
+  <a id="delete" href="#"><small class="secondary">cs.input.</small>Key.delete</a></div><div class="constant">
+  <a id="digit0" href="#"><small class="secondary">cs.input.</small>Key.digit0</a></div><div class="constant">
+  <a id="digit1" href="#"><small class="secondary">cs.input.</small>Key.digit1</a></div><div class="constant">
+  <a id="digit2" href="#"><small class="secondary">cs.input.</small>Key.digit2</a></div><div class="constant">
+  <a id="digit3" href="#"><small class="secondary">cs.input.</small>Key.digit3</a></div><div class="constant">
+  <a id="digit4" href="#"><small class="secondary">cs.input.</small>Key.digit4</a></div><div class="constant">
+  <a id="digit5" href="#"><small class="secondary">cs.input.</small>Key.digit5</a></div><div class="constant">
+  <a id="digit6" href="#"><small class="secondary">cs.input.</small>Key.digit6</a></div><div class="constant">
+  <a id="digit7" href="#"><small class="secondary">cs.input.</small>Key.digit7</a></div><div class="constant">
+  <a id="digit8" href="#"><small class="secondary">cs.input.</small>Key.digit8</a></div><div class="constant">
+  <a id="digit9" href="#"><small class="secondary">cs.input.</small>Key.digit9</a></div><div class="constant">
+  <a id="a" href="#"><small class="secondary">cs.input.</small>Key.a</a></div><div class="constant">
+  <a id="b" href="#"><small class="secondary">cs.input.</small>Key.b</a></div><div class="constant">
+  <a id="c" href="#"><small class="secondary">cs.input.</small>Key.c</a></div><div class="constant">
+  <a id="d" href="#"><small class="secondary">cs.input.</small>Key.d</a></div><div class="constant">
+  <a id="e" href="#"><small class="secondary">cs.input.</small>Key.e</a></div><div class="constant">
+  <a id="f" href="#"><small class="secondary">cs.input.</small>Key.f</a></div><div class="constant">
+  <a id="g" href="#"><small class="secondary">cs.input.</small>Key.g</a></div><div class="constant">
+  <a id="h" href="#"><small class="secondary">cs.input.</small>Key.h</a></div><div class="constant">
+  <a id="i" href="#"><small class="secondary">cs.input.</small>Key.i</a></div><div class="constant">
+  <a id="j" href="#"><small class="secondary">cs.input.</small>Key.j</a></div><div class="constant">
+  <a id="k" href="#"><small class="secondary">cs.input.</small>Key.k</a></div><div class="constant">
+  <a id="l" href="#"><small class="secondary">cs.input.</small>Key.l</a></div><div class="constant">
+  <a id="m" href="#"><small class="secondary">cs.input.</small>Key.m</a></div><div class="constant">
+  <a id="n" href="#"><small class="secondary">cs.input.</small>Key.n</a></div><div class="constant">
+  <a id="o" href="#"><small class="secondary">cs.input.</small>Key.o</a></div><div class="constant">
+  <a id="p" href="#"><small class="secondary">cs.input.</small>Key.p</a></div><div class="constant">
+  <a id="q" href="#"><small class="secondary">cs.input.</small>Key.q</a></div><div class="constant">
+  <a id="r" href="#"><small class="secondary">cs.input.</small>Key.r</a></div><div class="constant">
+  <a id="s" href="#"><small class="secondary">cs.input.</small>Key.s</a></div><div class="constant">
+  <a id="t" href="#"><small class="secondary">cs.input.</small>Key.t</a></div><div class="constant">
+  <a id="u" href="#"><small class="secondary">cs.input.</small>Key.u</a></div><div class="constant">
+  <a id="v" href="#"><small class="secondary">cs.input.</small>Key.v</a></div><div class="constant">
+  <a id="w" href="#"><small class="secondary">cs.input.</small>Key.w</a></div><div class="constant">
+  <a id="x" href="#"><small class="secondary">cs.input.</small>Key.x</a></div><div class="constant">
+  <a id="y" href="#"><small class="secondary">cs.input.</small>Key.y</a></div><div class="constant">
+  <a id="z" href="#"><small class="secondary">cs.input.</small>Key.z</a></div><div class="constant">
+  <a id="contextMenu" href="#"><small class="secondary">cs.input.</small>Key.contextMenu</a></div><div class="constant">
+  <a id="f1" href="#"><small class="secondary">cs.input.</small>Key.f1</a></div><div class="constant">
+  <a id="f2" href="#"><small class="secondary">cs.input.</small>Key.f2</a></div><div class="constant">
+  <a id="f3" href="#"><small class="secondary">cs.input.</small>Key.f3</a></div><div class="constant">
+  <a id="f4" href="#"><small class="secondary">cs.input.</small>Key.f4</a></div><div class="constant">
+  <a id="f5" href="#"><small class="secondary">cs.input.</small>Key.f5</a></div><div class="constant">
+  <a id="f6" href="#"><small class="secondary">cs.input.</small>Key.f6</a></div><div class="constant">
+  <a id="f7" href="#"><small class="secondary">cs.input.</small>Key.f7</a></div><div class="constant">
+  <a id="f8" href="#"><small class="secondary">cs.input.</small>Key.f8</a></div><div class="constant">
+  <a id="f9" href="#"><small class="secondary">cs.input.</small>Key.f9</a></div><div class="constant">
+  <a id="f10" href="#"><small class="secondary">cs.input.</small>Key.f10</a></div><div class="constant">
+  <a id="f11" href="#"><small class="secondary">cs.input.</small>Key.f11</a></div><div class="constant">
+  <a id="f12" href="#"><small class="secondary">cs.input.</small>Key.f12</a></div><div class="constant">
+  <a id="f13" href="#"><small class="secondary">cs.input.</small>Key.f13</a></div><div class="constant">
+  <a id="f14" href="#"><small class="secondary">cs.input.</small>Key.f14</a></div><div class="constant">
+  <a id="f15" href="#"><small class="secondary">cs.input.</small>Key.f15</a></div><div class="constant">
+  <a id="f16" href="#"><small class="secondary">cs.input.</small>Key.f16</a></div><div class="constant">
+  <a id="f17" href="#"><small class="secondary">cs.input.</small>Key.f17</a></div><div class="constant">
+  <a id="f18" href="#"><small class="secondary">cs.input.</small>Key.f18</a></div><div class="constant">
+  <a id="f19" href="#"><small class="secondary">cs.input.</small>Key.f19</a></div><div class="constant">
+  <a id="f20" href="#"><small class="secondary">cs.input.</small>Key.f20</a></div><div class="constant">
+  <a id="f21" href="#"><small class="secondary">cs.input.</small>Key.f21</a></div><div class="constant">
+  <a id="f22" href="#"><small class="secondary">cs.input.</small>Key.f22</a></div><div class="constant">
+  <a id="f23" href="#"><small class="secondary">cs.input.</small>Key.f23</a></div><div class="constant">
+  <a id="f24" href="#"><small class="secondary">cs.input.</small>Key.f24</a></div><div class="constant">
+  <a id="scrollLock" href="#"><small class="secondary">cs.input.</small>Key.scrollLock</a></div><div class="constant">
+  <a id="semicolon" href="#"><small class="secondary">cs.input.</small>Key.semicolon</a></div><div class="constant">
+  <a id="equal" href="#"><small class="secondary">cs.input.</small>Key.equal</a></div><div class="constant">
+  <a id="comma" href="#"><small class="secondary">cs.input.</small>Key.comma</a></div><div class="constant">
+  <a id="minus" href="#"><small class="secondary">cs.input.</small>Key.minus</a></div><div class="constant">
+  <a id="period" href="#"><small class="secondary">cs.input.</small>Key.period</a></div><div class="constant">
+  <a id="slash" href="#"><small class="secondary">cs.input.</small>Key.slash</a></div><div class="constant">
+  <a id="backquote" href="#"><small class="secondary">cs.input.</small>Key.backquote</a></div><div class="constant">
+  <a id="bracketLeft" href="#"><small class="secondary">cs.input.</small>Key.bracketLeft</a></div><div class="constant">
+  <a id="backslash" href="#"><small class="secondary">cs.input.</small>Key.backslash</a></div><div class="constant">
+  <a id="bracketRight" href="#"><small class="secondary">cs.input.</small>Key.bracketRight</a></div><div class="constant">
+  <a id="quote" href="#"><small class="secondary">cs.input.</small>Key.quote</a></div></div>
+<p class="type-desc"></p></div><aside class="symbols"><div>
+<nav><ul><li><a href="#MouseDownEvent">MouseDownEvent</a></li><li><a href="#MouseUpEvent">MouseUpEvent</a></li><li><a href="#MouseButton">MouseButton</a></li><li><a href="#MouseMoveEvent">MouseMoveEvent</a></li><li><a href="#KeyDownEvent">KeyDownEvent</a></li><li><a href="#KeyUpEvent">KeyUpEvent</a></li><li><a href="#Key">Key</a></li></ul></nav></div></aside></main> <script>
+     document.getElementById('input').focus();
+ </script><script src="highlight.min.js"></script>
+<script>
+  hljs.highlightAll();
+</script></body></html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html data-theme="light">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="pico.min.css" />
+  <link rel="stylesheet" href="docs.css" />
+  <link rel="stylesheet" href="hljs-default.min.css" />
+  <link rel="stylesheet" href="hljs-vs.min.css" />
+  <title>Cosmic Docs | v0.1</title>
+</head>
+<body>
+  <main class="container-fluid"><aside><div>
+<h3><span class="primary">Cosmic</span> Docs</h3>
+<nav><select><option value="/docs">v0.1</option></select><section class="main-links"><ul><li><a href="index.html#about">About</a></li><li><a href="index.html#start">Getting Started</a></li><li><a href="index.html#tools">Tools</a></li><li><a href="index.html#community">Community</a></li></ul></section><section><div class="category secondary">API</div><ul><li><a id="core" href="core.html">cs.core</a></li><li><a id="files" href="files.html">cs.files</a></li><li><a id="graphics" href="graphics.html">cs.graphics</a></li><li><a id="http" href="http.html">cs.http</a></li><li><a id="input" href="input.html">cs.input</a></li><li><a id="net" href="net.html">cs.net</a></li><li><a id="test" href="test.html">cs.test</a></li><li><a id="window" href="window.html">cs.window</a></li><li><a id="worker" href="worker.html">cs.worker</a></li></ul></section></nav></div></aside><div class="docs"><mark class="ns">cs.http</mark>
+<h3>HTTP Client and Server</h3>
+<p>Provides an API to make HTTP requests and host HTTP servers. HTTPS is supported. There are plans to support WebSockets.</p><div class="func">
+  <a id="get" href="#"><small class="secondary">cs.http.</small>get</a> <span class="params">(&nbsp;<span class="param">url: <span class="secondary">string</span></span> )</span> <span class="return">string</span></div>
+<p class="func-desc">Makes a GET request and returns the response body text if successful. Returns false if there was a connection error, timeout error (30 secs), or the response code is 5xx. Advanced: cs.http.request</p><div class="func">
+  <a id="getAsync" href="#"><small class="secondary">cs.http.</small>getAsync</a> <span class="params">(&nbsp;<span class="param">url: <span class="secondary">string</span></span> )</span> <span class="return">Promise</span></div>
+<p class="func-desc"></p><div class="func">
+  <a id="post" href="#"><small class="secondary">cs.http.</small>post</a> <span class="params">(&nbsp;<span class="param">url: <span class="secondary">string</span></span>, <span class="param">body: <span class="secondary">string</span></span> )</span> <span class="return">string</span></div>
+<p class="func-desc">Makes a POST request and returns the response body text if successful. Returns false if there was a connection error, timeout error (30 secs), or the response code is 5xx. Advanced: cs.http.request</p><div class="func">
+  <a id="postAsync" href="#"><small class="secondary">cs.http.</small>postAsync</a> <span class="params">(&nbsp;<span class="param">url: <span class="secondary">string</span></span>, <span class="param">body: <span class="secondary">string</span></span> )</span> <span class="return">Promise</span></div>
+<p class="func-desc"></p><div class="func">
+  <a id="request" href="#"><small class="secondary">cs.http.</small>request</a> <span class="params">(&nbsp;<span class="param">url: <span class="secondary">string</span></span>, <span class="param">options: <span class="secondary">?RequestOptions</span></span> )</span> <span class="return">Response</span></div>
+<p class="func-desc">Returns Response object if request was successful. Throws exception if there was a connection or protocol error.</p><div class="func">
+  <a id="requestAsync" href="#"><small class="secondary">cs.http.</small>requestAsync</a> <span class="params">(&nbsp;<span class="param">url: <span class="secondary">string</span></span>, <span class="param">options: <span class="secondary">?RequestOptions</span></span> )</span> <span class="return">Promise</span></div>
+<p class="func-desc"></p><div class="func">
+  <a id="serveHttp" href="#"><small class="secondary">cs.http.</small>serveHttp</a> <span class="params">(&nbsp;<span class="param">host: <span class="secondary">string</span></span>, <span class="param">port: <span class="secondary">number</span></span> )</span> <span class="return">object</span></div>
+<p class="func-desc">Starts a HTTP server and returns the handle.</p><div class="func">
+  <a id="serveHttps" href="#"><small class="secondary">cs.http.</small>serveHttps</a> <span class="params">(&nbsp;<span class="param">host: <span class="secondary">string</span></span>, <span class="param">port: <span class="secondary">number</span></span>, <span class="param">certPath: <span class="secondary">string</span></span>, <span class="param">keyPath: <span class="secondary">string</span></span> )</span> <span class="return">object</span></div>
+<p class="func-desc">Starts a HTTPS server and returns the handle.</p><div class="type">
+  <a id="RequestMethod" href="#"><small class="secondary">cs.http</small>.RequestMethod</a> <span class="params">string</span><div class="indent field"><span class="primary">"head"</span></div><div class="indent field"><span class="primary">"get"</span></div><div class="indent field"><span class="primary">"post"</span></div><div class="indent field"><span class="primary">"put"</span></div><div class="indent field"><span class="primary">"delete"</span></div></div>
+<p class="type-desc"></p><div class="type">
+  <a id="ContentType" href="#"><small class="secondary">cs.http</small>.ContentType</a> <span class="params">string</span><div class="indent field"><span class="primary">"json"</span></div><div class="indent field"><span class="primary">"formdata"</span></div></div>
+<p class="type-desc"></p><div class="type">
+  <a id="RequestOptions" href="#"><small class="secondary">cs.http</small>.RequestOptions</a> <span class="params">object</span><div class="indent field"><span class="primary">method</span>: RequestMethod</div><div class="indent field"><span class="primary">keepConnection</span>: boolean</div><div class="indent field"><span class="primary">contentType</span>: ?ContentType</div><div class="indent field"><span class="primary">body</span>: ?string</div><div class="indent field"><span class="primary">timeout</span>: number</div><div class="indent field"><span class="primary">headers</span>: ?object</div><div class="indent field"><span class="primary">certFile</span>: ?string</div></div>
+<p class="type-desc"></p><div class="type">
+  <a id="Response" href="#"><small class="secondary">cs.http</small>.Response</a> <span class="params">object</span><div class="indent field"><span class="primary">status</span>: number</div><div class="indent field"><span class="primary">headers</span>: object</div><div class="indent field"><span class="primary">body</span>: string</div></div>
+<p class="type-desc">The response object holds the data received from making a HTTP request.</p><div class="type">
+  <a id="Server" href="#"><small class="secondary">cs.http</small>.Server</a> <span class="params">object</span></div>
+<p class="type-desc">Provides an interface to the underlying server handle.</p><div class="func">
+  <a id="setHandler" href="#"><small class="secondary">cs.http.Server</small><span class="method">setHandler</span></a> <span class="params">(&nbsp;<span class="param">callback: <span class="secondary">function</span></span> )</span> <span class="return"></span></div>
+<p class="func-desc">Sets the handler for receiving requests.</p><div class="func">
+  <a id="requestClose" href="#"><small class="secondary">cs.http.Server</small><span class="method">requestClose</span></a> <span class="params">(&nbsp; )</span> <span class="return"></span></div>
+<p class="func-desc">Request the server to close. It will gracefully shutdown in the background.</p><div class="func">
+  <a id="closeAsync" href="#"><small class="secondary">cs.http.Server</small><span class="method">closeAsync</span></a> <span class="params">(&nbsp; )</span> <span class="return">Promise</span></div>
+<p class="func-desc">Requests the server to close. The promise will resolve when it's done.</p><div class="type">
+  <a id="ResponseWriter" href="#"><small class="secondary">cs.http</small>.ResponseWriter</a> <span class="params">object</span></div>
+<p class="type-desc">Provides an interface to the current response writer.</p><div class="func">
+  <a id="setStatus" href="#"><small class="secondary">cs.http.ResponseWriter</small><span class="method">setStatus</span></a> <span class="params">(&nbsp;<span class="param">status: <span class="secondary">number</span></span> )</span> <span class="return"></span></div>
+<p class="func-desc"></p><div class="func">
+  <a id="setHeader" href="#"><small class="secondary">cs.http.ResponseWriter</small><span class="method">setHeader</span></a> <span class="params">(&nbsp;<span class="param">key: <span class="secondary">string</span></span>, <span class="param">value: <span class="secondary">string</span></span> )</span> <span class="return"></span></div>
+<p class="func-desc"></p><div class="func">
+  <a id="send" href="#"><small class="secondary">cs.http.ResponseWriter</small><span class="method">send</span></a> <span class="params">(&nbsp;<span class="param">text: <span class="secondary">string</span></span> )</span> <span class="return"></span></div>
+<p class="func-desc">Sends UTF-8 text to the response.</p><div class="func">
+  <a id="sendBytes" href="#"><small class="secondary">cs.http.ResponseWriter</small><span class="method">sendBytes</span></a> <span class="params">(&nbsp;<span class="param">buffer: <span class="secondary">Uint8Array</span></span> )</span> <span class="return"></span></div>
+<p class="func-desc">Sends raw bytes to the response.</p><div class="type">
+  <a id="Request" href="#"><small class="secondary">cs.http</small>.Request</a> <span class="params">object</span><div class="indent field"><span class="primary">method</span>: RequestMethod</div><div class="indent field"><span class="primary">path</span>: string</div><div class="indent field"><span class="primary">data</span>: Uint8Array</div></div>
+<p class="type-desc">Holds data about the request when hosting an HTTP server.</p></div><aside class="symbols"><div>
+<nav><ul><li><a href="#get">get()</a></li><li><a href="#getAsync">getAsync()</a></li><li><a href="#post">post()</a></li><li><a href="#postAsync">postAsync()</a></li><li><a href="#request">request()</a></li><li><a href="#requestAsync">requestAsync()</a></li><li><a href="#serveHttp">serveHttp()</a></li><li><a href="#serveHttps">serveHttps()</a></li><li><a href="#RequestMethod">RequestMethod</a></li><li><a href="#ContentType">ContentType</a></li><li><a href="#RequestOptions">RequestOptions</a></li><li><a href="#Response">Response</a></li><li><a href="#Server">Server</a></li><li class="indent"><a href="#setHandler">setHandler()</a></li><li class="indent"><a href="#requestClose">requestClose()</a></li><li class="indent"><a href="#closeAsync">closeAsync()</a></li><li><a href="#ResponseWriter">ResponseWriter</a></li><li class="indent"><a href="#setStatus">setStatus()</a></li><li class="indent"><a href="#setHeader">setHeader()</a></li><li class="indent"><a href="#send">send()</a></li><li class="indent"><a href="#sendBytes">sendBytes()</a></li><li><a href="#Request">Request</a></li></ul></nav></div></aside></main> <script>
+     document.getElementById('http').focus();
+ </script><script src="highlight.min.js"></script>
+<script>
+  hljs.highlightAll();
+</script></body></html>

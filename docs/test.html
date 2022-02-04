@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html data-theme="light">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="pico.min.css" />
+  <link rel="stylesheet" href="docs.css" />
+  <link rel="stylesheet" href="hljs-default.min.css" />
+  <link rel="stylesheet" href="hljs-vs.min.css" />
+  <title>Cosmic Docs | v0.1</title>
+</head>
+<body>
+  <main class="container-fluid"><aside><div>
+<h3><span class="primary">Cosmic</span> Docs</h3>
+<nav><select><option value="/docs">v0.1</option></select><section class="main-links"><ul><li><a href="index.html#about">About</a></li><li><a href="index.html#start">Getting Started</a></li><li><a href="index.html#tools">Tools</a></li><li><a href="index.html#community">Community</a></li></ul></section><section><div class="category secondary">API</div><ul><li><a id="core" href="core.html">cs.core</a></li><li><a id="files" href="files.html">cs.files</a></li><li><a id="graphics" href="graphics.html">cs.graphics</a></li><li><a id="http" href="http.html">cs.http</a></li><li><a id="input" href="input.html">cs.input</a></li><li><a id="net" href="net.html">cs.net</a></li><li><a id="test" href="test.html">cs.test</a></li><li><a id="window" href="window.html">cs.window</a></li><li><a id="worker" href="worker.html">cs.worker</a></li></ul></section></nav></div></aside><div class="docs"><mark class="ns">cs.test</mark>
+<h3>Testing</h3>
+<p>The testing API is only avaiable when using the test runner.</p><div class="func">
+  <a id="create" href="#"><small class="secondary">cs.test.</small>create</a> <span class="params">(&nbsp;<span class="param">name: <span class="secondary">string</span></span>, <span class="param">callback: <span class="secondary">function</span></span> )</span> <span class="return"></span></div>
+<p class="func-desc">Creates a test to be run. If the callback is async the test will be run concurrently.</p><div class="func">
+  <a id="createIsolated" href="#"><small class="secondary">cs.test.</small>createIsolated</a> <span class="params">(&nbsp;<span class="param">name: <span class="secondary">string</span></span>, <span class="param">callback: <span class="secondary">function</span></span> )</span> <span class="return"></span></div>
+<p class="func-desc">Creates an isolated test to be run. An isolated test runs after all normal tests and are run one by one even if they are async.</p><div class="func">
+  <a id="eq" href="#"><small class="secondary">cs.test.</small>eq</a> <span class="params">(&nbsp;<span class="param">act: <span class="secondary">any</span></span>, <span class="param">exp: <span class="secondary">any</span></span> )</span> <span class="return"></span></div>
+<p class="func-desc">Asserts that the actual value equals the expected value.</p><div class="func">
+  <a id="neq" href="#"><small class="secondary">cs.test.</small>neq</a> <span class="params">(&nbsp;<span class="param">act: <span class="secondary">any</span></span>, <span class="param">exp: <span class="secondary">any</span></span> )</span> <span class="return"></span></div>
+<p class="func-desc">Asserts that the actual value does not equal the expected value.</p><div class="func">
+  <a id="contains" href="#"><small class="secondary">cs.test.</small>contains</a> <span class="params">(&nbsp;<span class="param">act: <span class="secondary">any</span></span>, <span class="param">needle: <span class="secondary">any</span></span> )</span> <span class="return"></span></div>
+<p class="func-desc">Asserts that the actual value contains a sub value. For a string, a sub value is a substring.</p><div class="func">
+  <a id="throws" href="#"><small class="secondary">cs.test.</small>throws</a> <span class="params">(&nbsp;<span class="param">func: <span class="secondary">function</span></span>, <span class="param">expErrorSubStr: <span class="secondary">?string</span></span> )</span> <span class="return"></span></div>
+<p class="func-desc">Asserts that the anonymous function throws an exception. An optional substring can be provided to check against the exception message.</p></div><aside class="symbols"><div>
+<nav><ul><li><a href="#create">create()</a></li><li><a href="#createIsolated">createIsolated()</a></li><li><a href="#eq">eq()</a></li><li><a href="#neq">neq()</a></li><li><a href="#contains">contains()</a></li><li><a href="#throws">throws()</a></li></ul></nav></div></aside></main> <script>
+     document.getElementById('test').focus();
+ </script><script src="highlight.min.js"></script>
+<script>
+  hljs.highlightAll();
+</script></body></html>
