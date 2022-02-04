@@ -7,7 +7,6 @@ jobs:
   main:
     name: Main Job.
     runs-on: ubuntu-20.04
-    env:
     steps:
       - name: Clone repo.
         uses: actions/checkout@v2
