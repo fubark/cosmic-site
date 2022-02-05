@@ -6,22 +6,26 @@
  	<link rel="stylesheet" href="pico.min.css" />
 	<style>
 		[data-theme="light"], :root:not([data-theme="dark"]) {
-			--h1-color: #039be5;
+			--h1-color: #2176FF;
+			--primary: #2176FF;
 		}
+        main.container {
+            padding-top: 0px;
+        }
 	</style>
 	<title>Cosmic</title>
 </head>
 <body>
-	<header class="container-fluid" style="background-color: #f4f4f4;">
+	<header class="container-fluid">
 		<div class="container">
 			<hgroup>
 				<h1>Cosmic</h1>
-				<h2>Build software with <b>JavaScript</b> and <b>WASM</b>.</h2>
+				<h2>A general purpose runtime for <b>JavaScript</b> and <b>WASM</b>.</h2>
 			</hgroup>
 			<nav>
 				<ul>
-				  <li>Download (v0.1 Alpha)</li>
-				  <li>Docs</li>
+				  <li><a href="https://github.com/fubark/cosmic/releases">Download - v0.1 Alpha</a></li>
+				  <li><a href="/docs/index.html">Docs</a></li>
 				  <li><a href="https://github.com/fubark/cosmic">Github</a></li>
 					<!--
 				  <li><a href="#" data-theme-switcher="auto">Auto</a></li>
@@ -34,127 +38,96 @@
 	</header>
 	<main class="container">
 		<section id="uses">
-			<hgroup>
-				<h1>Cosmic is a <b>single runtime</b> for broad applications.</h1>
-			</hgroup>
-			<div class="grid ">
-				<div>
-					<h5>Desktop and Web UI</h5>
-					<ul>
-						<li>Declarative widget framework.</li>
-						<li>Builtin widgets library.</li>
-						<li>Styles and themes.</li>
-						<li>Runs on desktop with native graphics/input.</li>
-						<li>Runs on the web with Canvas/WebGL.</li>
-						<li><a href="#" disabled>Soon</a></li>
-					</ul>
-				</div>
-				<div>
-					<h5>Games and real-time apps</h5>
-					<ul>
-						<li>2D Graphics API. *</li>
-						<li>3D Graphics API. *</li>
-						<li>Video/Sound API.</li>
-						<li>Input API.</li>
-						<li><a href="#" disabled>Soon</a></li>
-					</ul>
-					<p><sub>* Supports OpenGL, and soon WebGPU.</sub></p>
-				</div>
-			</div>
+            <h5>Simple, unrestrictive, native API.</h5>
+            <p>Scripting should be simple and let you do more with less. Cosmic starts with the V8 engine and adds native APIs to your computer. Here are some APIs we've built and are planning to build.</p>
 			<div class="grid">
 				<div>
-					<h5>Backend development</h5>
 					<ul>
-						<li>Web server API.</li>
-						<li>HTTP client API.</li>
-						<li>Network API.</li>
-						<li>File system API.</li>
-						<li><a href="#" disabled>Soon</a></li>
+						<li><a href="/docs/window.html">Window API.</li>
+						<li><a href="/docs/graphics.html">2D Graphics API.</a></li>
+						<li>3D Graphics API. (Planned)</li>
+						<li>Video/Sound API. (Planned)</li>
+						<li><a href="/docs/input.html">Input API.</a></li>
+						<li><a href="/docs/files.html">Filesystem API.</a></li>
+						<li>Networking API. (Planned)</a></li>
+						<li>OS/Process API. (Planned)</a></li>
 					</ul>
 				</div>
 				<div>
-					<h5>Scripting and tooling</h5>
-					<ul>
-						<li>Go fast for all your scripting needs.</li>
-						<li>Build command line tools.</li>
-						<li>Automate workflows and tasks.</li>
-						<li><a href="#" disabled>Soon</a></li>
-					</ul>
+                    <a href="https://raw.githubusercontent.com/fubark/cosmic-site/master/graphics-demo-macos.png"><img src="https://raw.githubusercontent.com/fubark/cosmic-site/master/graphics-demo-macos.png" /></a>
 				</div>
 			</div>
+            <h5>Sensible, builtin libraries.</h5>
+            <p>On top of the basic native APIs, Cosmic will provide libraries and utilities to do common development tasks:</p>
+			<div class="grid">
+				<div>
+					<ul>
+						<li>Declarative UI. (Planned)</li>
+						<li>Builtin UI widgets. (Planned)</li>
+						<li>Animation API. (Planned)</li>
+						<li><a href="/docs/http.html">HTTP client API.</a></li>
+						<li><a href="/docs/http.html">HTTP server API.</a></li>
+					</ul>
+				</div>
+<!-- TODO: Image
+				<div>
+				</div>
+-->
+			</div>
+            <h5>Developer tools.</h5>
+            <p>Cosmic will provide builtin tools to help you write, maintain, and ship software.</p>
+			<div class="grid">
+				<div>
+					<ul>
+						<li>Optional security with broad or granular permissions. (Planned)</li>
+						<li><a href="/docs/index.html#tools">Test runner.</a></li>
+						<li>Hot code reloading. (Planned)</li>
+						<li>Performance profiling. (Planned)</li>
+						<li>Debug code with Chrome DevTools. (Planned)</li>
+						<li>Bundle apps for the web or native executables. (Planned)</li>
+					</ul>
+				</div>
+<!-- TODO: Image
+				<div>
+				</div>
+-->
+            </div>
+            <h5>Embrace the good parts of the JS ecosystem.</h5>
+            <div class="grid">
+                <div>
+                    <ul>
+                        <li>TypeScript support and builtin compiler. (Planned)</li>
+                        <li>Import external code using ES6 modules. (Planned)</li>
+                        <li>Sync ops by default with async equivalent API.</li>
+                        <li>Native async IO.</li>
+                        <li>Web Workers. (Planned)</li>
+                        <li>WebGPU. (Planned)</li>
+                        <li>WASM API. (Planned)</li>
+                    </ul>
+                </div>
+<!-- TODO: Image
+				<div>
+				</div>
+-->
+			</div>
+            <h5>Open source.</h5>
+			<div class="grid">
+				<div>
+					<ul>
+						<li>The runtime and toolkit is built with <a href="https://ziglang.org">Zig</a> and quality open source libraries.</li>
+						<li>The JS/WASM engine is powered by Google's <a href="https://v8.dev">V8</a>.</li>
+						<li>Cosmic is on <a href="https://github.com/fubark/cosmic">Github</a> and released under the MIT License.</li>
+					</ul>
+				</div>
+<!-- TODO: Image
+				<div>
+				</div>
+-->
+			</div>
+            <h5>Learn more.</h5>
+            <p>Want to learn more and see examples? Head on over to the <a href="/docs/index.html">docs</a>.</p>
 		</section>
-		<section id="tool">
-			<hgroup>
-				<h1>Cosmic is a <b>single tool</b> to install and learn.</h1>
-			</hgroup>
-			<div class="grid">
-				<div>
-					<h5>Developer tools</h5>
-					<ul>
-						<li>Secure runtime with broad or granular permissions.</li>
-						<li>Builtin test runner.</li>
-						<li>Builtin hot code reloading.</li>
-						<li>Builtin profiling.</li>
-						<li>Import external code using ES6 modules.</li>
-						<li>Debug code with Chrome DevTools.</li>
-						<li><a href="#" disabled>Soon</a></li>
-					</ul>
-				</div>
-				<div>
-					<h5>Curated standard library</h5>
-					<ul>
-						<li>Simple JS API* with sync/async ops.</li>
-						<li>Will be backwards compatible starting at (v1.0).</li>
-						<li>Online and offline docs.</li>
-						<li>Typed definitions for your text editor.</li>
-						<li><a href="#" disabled>Soon</a></li>
-					</ul>
-					<p><sub>* The same API will also be available to WASM/WASI.</sub></p>
-				</div>
-			</div>
-			<div class="grid">
-				<div>
-					<h5>TypeScript support</h5>
-					<ul>
-						<li>Opt-in to types for projects that scale.</li>
-						<li>Builtin TypeScript compiler focused on speed.</li>
-						<li><a href="#" disabled>Soon</a></li>
-					</ul>
-				</div>
-				<div>
-					<h5>Distribution tools</h5>
-					<ul>
-						<li>Bundle your software into a single binary for distribution.</li>
-						<li>Single code base for multiple platforms.</li>
-						<li>Protect your users with permission controls.</li>
-						<li><a href="#" disabled>Soon</a></li>
-					</ul>
-				</div>
-			</div>
-		</section>
-		<section id="tech">
-			<hgroup>
-				<h1>Cosmic is a <b>single tech stack</b> to invest in.</h1>
-			</hgroup>
-			<div class="grid">
-				<div>
-					<h5>Modern technologies</h5>
-					<ul>
-						<li>Embrace quality software tools and patterns.</li>
-						<li>Bring your own language by compiling to Javascript or WASM.</li>
-						<li>Marketable skillset for your career.</li>
-					</ul>
-				</div>
-				<div>
-					<h5>Reliable engine</h5>
-					<ul>
-						<li>Cosmic is open source and released under the MIT License.</li>
-						<li>The runtime and toolchain is built with <a href="https://ziglang.org">Zig</a> and quality open source libraries.</li>
-						<li>The JS/WASM engine is powered by Google's V8.</li>
-					</ul>
-				</div>
-			</div>
-		</section>
+<!--
 		<section id="download">
 			<h3>Download</h3>
 			<div>
@@ -167,6 +140,7 @@
 			Windows
 			</div>
 		</section>
+-->
 	</main>
 	<footer class="container">
 	</footer>
