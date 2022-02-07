@@ -16,11 +16,28 @@
 <p>Contains common utilities. All functions here are also available in the global scope. You can call them directly without the cs.core prefix.</p><div class="func">
   <a id="print" href="#"><small class="secondary">cs.core.</small>print</a> <span class="params">(&nbsp;<span class="param">args: <span class="secondary">?...any</span></span> )</span> <span class="return"></span></div>
 <p class="func-desc">Prints any number of variables as strings separated by " ".</p><div class="func">
-  <a id="printLine" href="#"><small class="secondary">cs.core.</small>printLine</a> <span class="params">(&nbsp;<span class="param">args: <span class="secondary">?...any</span></span> )</span> <span class="return"></span></div>
+  <a id="puts" href="#"><small class="secondary">cs.core.</small>puts</a> <span class="params">(&nbsp;<span class="param">args: <span class="secondary">?...any</span></span> )</span> <span class="return"></span></div>
 <p class="func-desc">Prints any number of variables as strings separated by " ". Wraps to the next line.</p><div class="func">
   <a id="bufferToUtf8" href="#"><small class="secondary">cs.core.</small>bufferToUtf8</a> <span class="params">(&nbsp;<span class="param">buffer: <span class="secondary">Uint8Array</span></span> )</span> <span class="return">string</span></div>
-<p class="func-desc">Converts a buffer to a UTF-8 string.</p></div><aside class="symbols"><div>
-<nav><ul><li><a href="#print">print()</a></li><li><a href="#printLine">printLine()</a></li><li><a href="#bufferToUtf8">bufferToUtf8()</a></li></ul></nav></div></aside></main> <script>
+<p class="func-desc">Converts a buffer to a UTF-8 string.</p><div class="func">
+  <a id="getMainScriptPath" href="#"><small class="secondary">cs.core.</small>getMainScriptPath</a> <span class="params">(&nbsp; )</span> <span class="return">string</span></div>
+<p class="func-desc">Returns the absolute path of the main script.</p><div class="func">
+  <a id="getMainScriptDir" href="#"><small class="secondary">cs.core.</small>getMainScriptDir</a> <span class="params">(&nbsp; )</span> <span class="return">string</span></div>
+<p class="func-desc">Returns the absolute path of the main script's directory. Does not include an ending slash. This is useful if you have additional source or assets that depends on the location of your main script.</p><div class="func">
+  <a id="panic" href="#"><small class="secondary">cs.core.</small>panic</a> <span class="params">(&nbsp;<span class="param">msg: <span class="secondary">?string</span></span> )</span> <span class="return"></span></div>
+<p class="func-desc">Prints the current stack trace and exits the program with an error code. This is useful to short circuit your program.</p><div class="func">
+  <a id="exit" href="#"><small class="secondary">cs.core.</small>exit</a> <span class="params">(&nbsp;<span class="param">code: <span class="secondary">number</span></span> )</span> <span class="return"></span></div>
+<p class="func-desc">Terminate the program with a code. Use code=0 for a successful exit and a positive value for an error exit.</p><div class="func">
+  <a id="errCode" href="#"><small class="secondary">cs.core.</small>errCode</a> <span class="params">(&nbsp; )</span> <span class="return">number</span></div>
+<p class="func-desc">Returns the last error code. API calls that return null will set their error code to be queried by errCode() and errString().</p><div class="func">
+  <a id="errString" href="#"><small class="secondary">cs.core.</small>errString</a> <span class="params">(&nbsp; )</span> <span class="return">string</span></div>
+<p class="func-desc">Returns the last error message.</p><div class="type">
+  <a id="Error" href="#"><small class="secondary">cs.core</small>.Error</a> <span class="params">enum</span><div class="constant">
+  <a id="NoError" href="#"><small class="secondary">cs.core.</small>Error.NoError</a></div><div class="constant">
+  <a id="FileNotFound" href="#"><small class="secondary">cs.core.</small>Error.FileNotFound</a></div><div class="constant">
+  <a id="IsDir" href="#"><small class="secondary">cs.core.</small>Error.IsDir</a></div></div>
+<p class="type-desc"></p></div><aside class="symbols"><div>
+<nav><ul><li><a href="#print">print()</a></li><li><a href="#puts">puts()</a></li><li><a href="#bufferToUtf8">bufferToUtf8()</a></li><li><a href="#getMainScriptPath">getMainScriptPath()</a></li><li><a href="#getMainScriptDir">getMainScriptDir()</a></li><li><a href="#panic">panic()</a></li><li><a href="#exit">exit()</a></li><li><a href="#errCode">errCode()</a></li><li><a href="#errString">errString()</a></li><li><a href="#Error">Error</a></li></ul></nav></div></aside></main> <script>
      document.getElementById('core').focus();
  </script><script src="highlight.min.js"></script>
 <script>
