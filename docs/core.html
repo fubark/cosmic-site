@@ -20,24 +20,31 @@
 <p class="func-desc">Prints any number of variables as strings separated by " ". Wraps to the next line.</p><div class="func">
   <a id="bufferToUtf8" href="#"><small class="secondary">cs.core.</small>bufferToUtf8</a> <span class="params">(&nbsp;<span class="param">buffer: <span class="secondary">Uint8Array</span></span> )</span> <span class="return">string</span></div>
 <p class="func-desc">Converts a buffer to a UTF-8 string.</p><div class="func">
+  <a id="setTimeout" href="#"><small class="secondary">cs.core.</small>setTimeout</a> <span class="params">(&nbsp;<span class="param">: <span class="secondary">number</span></span>, <span class="param">: <span class="secondary">function</span></span>, <span class="param">: <span class="secondary">?any</span></span> )</span> <span class="return">number</span></div>
+<p class="func-desc">Invoke a callback after a timeout in milliseconds.</p><div class="func">
   <a id="getMainScriptPath" href="#"><small class="secondary">cs.core.</small>getMainScriptPath</a> <span class="params">(&nbsp; )</span> <span class="return">string</span></div>
 <p class="func-desc">Returns the absolute path of the main script.</p><div class="func">
   <a id="getMainScriptDir" href="#"><small class="secondary">cs.core.</small>getMainScriptDir</a> <span class="params">(&nbsp; )</span> <span class="return">string</span></div>
 <p class="func-desc">Returns the absolute path of the main script's directory. Does not include an ending slash. This is useful if you have additional source or assets that depends on the location of your main script.</p><div class="func">
+  <a id="getAppDir" href="#"><small class="secondary">cs.core.</small>getAppDir</a> <span class="params">(&nbsp;<span class="param">: <span class="secondary">string</span></span> )</span> <span class="return">string</span></div>
+<p class="func-desc">Given an app name, returns the platform's app directory to read/write files to. This does not ensure that the directory exists. See ensurePath.</p><div class="func">
   <a id="panic" href="#"><small class="secondary">cs.core.</small>panic</a> <span class="params">(&nbsp;<span class="param">msg: <span class="secondary">?string</span></span> )</span> <span class="return"></span></div>
 <p class="func-desc">Prints the current stack trace and exits the program with an error code. This is useful to short circuit your program.</p><div class="func">
   <a id="exit" href="#"><small class="secondary">cs.core.</small>exit</a> <span class="params">(&nbsp;<span class="param">code: <span class="secondary">number</span></span> )</span> <span class="return"></span></div>
 <p class="func-desc">Terminate the program with a code. Use code=0 for a successful exit and a positive value for an error exit.</p><div class="func">
   <a id="errCode" href="#"><small class="secondary">cs.core.</small>errCode</a> <span class="params">(&nbsp; )</span> <span class="return">number</span></div>
 <p class="func-desc">Returns the last error code. API calls that return null will set their error code to be queried by errCode() and errString().</p><div class="func">
-  <a id="errString" href="#"><small class="secondary">cs.core.</small>errString</a> <span class="params">(&nbsp; )</span> <span class="return">string</span></div>
-<p class="func-desc">Returns the last error message.</p><div class="type">
-  <a id="Error" href="#"><small class="secondary">cs.core</small>.Error</a> <span class="params">enum</span><div class="constant">
-  <a id="NoError" href="#"><small class="secondary">cs.core.</small>Error.NoError</a></div><div class="constant">
-  <a id="FileNotFound" href="#"><small class="secondary">cs.core.</small>Error.FileNotFound</a></div><div class="constant">
-  <a id="IsDir" href="#"><small class="secondary">cs.core.</small>Error.IsDir</a></div></div>
+  <a id="errString" href="#"><small class="secondary">cs.core.</small>errString</a> <span class="params">(&nbsp;<span class="param">: <span class="secondary">CsError</span></span> )</span> <span class="return">string</span></div>
+<p class="func-desc">Returns an error message for an error code.</p><div class="func">
+  <a id="clearError" href="#"><small class="secondary">cs.core.</small>clearError</a> <span class="params">(&nbsp; )</span> <span class="return"></span></div>
+<p class="func-desc">Clears the last error.</p><div class="type">
+  <a id="CsError" href="#"><small class="secondary">cs.core</small>.CsError</a> <span class="params">enum</span><div class="constant">
+  <a id="NoError" href="#"><small class="secondary">cs.core.</small>CsError.NoError</a></div><div class="constant">
+  <a id="FileNotFound" href="#"><small class="secondary">cs.core.</small>CsError.FileNotFound</a></div><div class="constant">
+  <a id="IsDir" href="#"><small class="secondary">cs.core.</small>CsError.IsDir</a></div><div class="constant">
+  <a id="NotAnError" href="#"><small class="secondary">cs.core.</small>CsError.NotAnError</a></div></div>
 <p class="type-desc"></p></div><aside class="symbols"><div>
-<nav><ul><li><a href="#print">print()</a></li><li><a href="#puts">puts()</a></li><li><a href="#bufferToUtf8">bufferToUtf8()</a></li><li><a href="#getMainScriptPath">getMainScriptPath()</a></li><li><a href="#getMainScriptDir">getMainScriptDir()</a></li><li><a href="#panic">panic()</a></li><li><a href="#exit">exit()</a></li><li><a href="#errCode">errCode()</a></li><li><a href="#errString">errString()</a></li><li><a href="#Error">Error</a></li></ul></nav></div></aside></main> <script>
+<nav><ul><li><a href="#print">print()</a></li><li><a href="#puts">puts()</a></li><li><a href="#bufferToUtf8">bufferToUtf8()</a></li><li><a href="#setTimeout">setTimeout()</a></li><li><a href="#getMainScriptPath">getMainScriptPath()</a></li><li><a href="#getMainScriptDir">getMainScriptDir()</a></li><li><a href="#getAppDir">getAppDir()</a></li><li><a href="#panic">panic()</a></li><li><a href="#exit">exit()</a></li><li><a href="#errCode">errCode()</a></li><li><a href="#errString">errString()</a></li><li><a href="#clearError">clearError()</a></li><li><a href="#CsError">CsError</a></li></ul></nav></div></aside></main> <script>
      document.getElementById('core').focus();
  </script><script src="highlight.min.js"></script>
 <script>
