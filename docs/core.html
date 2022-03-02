@@ -11,17 +11,13 @@
 <body>
   <main class="container-fluid"><aside><div>
 <h3><span class="primary">Cosmic</span> Docs</h3>
-<nav><select><option value="/docs">v0.1</option></select><section class="main-links"><ul><li><a href="index.html#about">About</a></li><li><a href="index.html#start">Getting Started</a></li><li><a href="index.html#tools">Tools</a></li><li><a href="index.html#community">Community</a></li></ul></section><section><div class="category secondary">API</div><ul><li><a id="core" href="core.html">cs.core</a></li><li><a id="files" href="files.html">cs.files</a></li><li><a id="graphics" href="graphics.html">cs.graphics</a></li><li><a id="http" href="http.html">cs.http</a></li><li><a id="input" href="input.html">cs.input</a></li><li><a id="net" href="net.html">cs.net</a></li><li><a id="test" href="test.html">cs.test</a></li><li><a id="window" href="window.html">cs.window</a></li><li><a id="worker" href="worker.html">cs.worker</a></li></ul></section></nav></div></aside><div class="docs"><mark class="ns">cs.core</mark>
+<nav><select><option value="/docs">v0.1</option></select><section class="main-links"><ul><li><a href="index.html#about">About</a></li><li><a href="index.html#start">Getting Started</a></li><li><a href="index.html#tools">Tools</a></li><li><a href="index.html#community">Community</a></li></ul></section><section><div class="category secondary">API</div><ul><li><a id="audio" href="audio.html">cs.audio</a></li><li><a id="core" href="core.html">cs.core</a></li><li><a id="files" href="files.html">cs.files</a></li><li><a id="graphics" href="graphics.html">cs.graphics</a></li><li><a id="http" href="http.html">cs.http</a></li><li><a id="input" href="input.html">cs.input</a></li><li><a id="net" href="net.html">cs.net</a></li><li><a id="test" href="test.html">cs.test</a></li><li><a id="window" href="window.html">cs.window</a></li><li><a id="worker" href="worker.html">cs.worker</a></li></ul></section></nav></div></aside><div class="docs"><mark class="ns">cs.core</mark>
 <h3>Core</h3>
 <p>Contains common utilities. All functions here are also available in the global scope. You can call them directly without the cs.core prefix.</p><div class="func">
   <a id="print" href="#"><small class="secondary">cs.core.</small>print</a> <span class="params">(&nbsp;<span class="param">args: <span class="secondary">?...any</span></span> )</span> <span class="return"></span></div>
 <p class="func-desc">Prints any number of variables as strings separated by " ".</p><div class="func">
-  <a id="print_DEV" href="#"><small class="secondary">cs.core.</small>print_DEV</a> <span class="params">(&nbsp;<span class="param">: <span class="secondary">?...any</span></span> )</span> <span class="return"></span></div>
-<p class="func-desc"></p><div class="func">
   <a id="puts" href="#"><small class="secondary">cs.core.</small>puts</a> <span class="params">(&nbsp;<span class="param">args: <span class="secondary">?...any</span></span> )</span> <span class="return"></span></div>
 <p class="func-desc">Prints any number of variables as strings separated by " ". Wraps to the next line.</p><div class="func">
-  <a id="puts_DEV" href="#"><small class="secondary">cs.core.</small>puts_DEV</a> <span class="params">(&nbsp;<span class="param">: <span class="secondary">?...any</span></span> )</span> <span class="return"></span></div>
-<p class="func-desc"></p><div class="func">
   <a id="bufferToUtf8" href="#"><small class="secondary">cs.core.</small>bufferToUtf8</a> <span class="params">(&nbsp;<span class="param">buffer: <span class="secondary">Uint8Array</span></span> )</span> <span class="return">string</span></div>
 <p class="func-desc">Converts a buffer to a UTF-8 string.</p><div class="func">
   <a id="setTimeout" href="#"><small class="secondary">cs.core.</small>setTimeout</a> <span class="params">(&nbsp;<span class="param">timeout: <span class="secondary">number</span></span>, <span class="param">callback: <span class="secondary">function</span></span>, <span class="param">callbackArg: <span class="secondary">?any</span></span> )</span> <span class="return">number</span></div>
@@ -49,7 +45,9 @@
   <a id="getCpu" href="#"><small class="secondary">cs.core.</small>getCpu</a> <span class="params">(&nbsp; )</span> <span class="return">string</span></div>
 <p class="func-desc">Returns the host cpu arch and model as a string.</p><div class="func">
   <a id="getResourceUsage" href="#"><small class="secondary">cs.core.</small>getResourceUsage</a> <span class="params">(&nbsp; )</span> <span class="return">ResourceUsage</span></div>
-<p class="func-desc">Returns the resource usage of the current process.</p><div class="type">
+<p class="func-desc">Returns the resource usage of the current process.</p><div class="func">
+  <a id="gc" href="#"><small class="secondary">cs.core.</small>gc</a> <span class="params">(&nbsp; )</span> <span class="return"></span></div>
+<p class="func-desc">Invokes the JS engine garbage collector.</p><div class="type">
   <a id="ResourceUsage" href="#"><small class="secondary">cs.core</small>.ResourceUsage</a> <span class="params">object</span><div class="indent field"><span class="primary">user_time_secs</span>: number</div><div class="indent field"><span class="primary">user_time_usecs</span>: number</div><div class="indent field"><span class="primary">sys_time_secs</span>: number</div><div class="indent field"><span class="primary">sys_time_usecs</span>: number</div><div class="indent field"><span class="primary">memory</span>: number</div></div>
 <p class="type-desc"></p><div class="type">
   <a id="Os" href="#"><small class="secondary">cs.core</small>.Os</a> <span class="params">enum</span><div class="constant">
@@ -62,9 +60,11 @@
   <a id="NoError" href="#"><small class="secondary">cs.core.</small>CsError.NoError</a></div><div class="constant">
   <a id="FileNotFound" href="#"><small class="secondary">cs.core.</small>CsError.FileNotFound</a></div><div class="constant">
   <a id="IsDir" href="#"><small class="secondary">cs.core.</small>CsError.IsDir</a></div><div class="constant">
+  <a id="InvalidFormat" href="#"><small class="secondary">cs.core.</small>CsError.InvalidFormat</a></div><div class="constant">
+  <a id="Unsupported" href="#"><small class="secondary">cs.core.</small>CsError.Unsupported</a></div><div class="constant">
   <a id="NotAnError" href="#"><small class="secondary">cs.core.</small>CsError.NotAnError</a></div></div>
 <p class="type-desc"></p></div><aside class="symbols"><div>
-<nav><ul><li><a href="#print">print()</a></li><li><a href="#print_DEV">print_DEV()</a></li><li><a href="#puts">puts()</a></li><li><a href="#puts_DEV">puts_DEV()</a></li><li><a href="#bufferToUtf8">bufferToUtf8()</a></li><li><a href="#setTimeout">setTimeout()</a></li><li><a href="#getMainScriptPath">getMainScriptPath()</a></li><li><a href="#getMainScriptDir">getMainScriptDir()</a></li><li><a href="#getAppDir">getAppDir()</a></li><li><a href="#panic">panic()</a></li><li><a href="#exit">exit()</a></li><li><a href="#errCode">errCode()</a></li><li><a href="#errString">errString()</a></li><li><a href="#clearError">clearError()</a></li><li><a href="#getOs">getOs()</a></li><li><a href="#getOsVersion">getOsVersion()</a></li><li><a href="#getCpu">getCpu()</a></li><li><a href="#getResourceUsage">getResourceUsage()</a></li><li><a href="#ResourceUsage">ResourceUsage</a></li><li><a href="#Os">Os</a></li><li><a href="#CsError">CsError</a></li></ul></nav></div></aside></main> <script>
+<nav><ul><li><a href="#print">print()</a></li><li><a href="#puts">puts()</a></li><li><a href="#bufferToUtf8">bufferToUtf8()</a></li><li><a href="#setTimeout">setTimeout()</a></li><li><a href="#getMainScriptPath">getMainScriptPath()</a></li><li><a href="#getMainScriptDir">getMainScriptDir()</a></li><li><a href="#getAppDir">getAppDir()</a></li><li><a href="#panic">panic()</a></li><li><a href="#exit">exit()</a></li><li><a href="#errCode">errCode()</a></li><li><a href="#errString">errString()</a></li><li><a href="#clearError">clearError()</a></li><li><a href="#getOs">getOs()</a></li><li><a href="#getOsVersion">getOsVersion()</a></li><li><a href="#getCpu">getCpu()</a></li><li><a href="#getResourceUsage">getResourceUsage()</a></li><li><a href="#gc">gc()</a></li><li><a href="#ResourceUsage">ResourceUsage</a></li><li><a href="#Os">Os</a></li><li><a href="#CsError">CsError</a></li></ul></nav></div></aside></main> <script>
      document.getElementById('core').focus();
  </script><script src="highlight.min.js"></script>
 <script>

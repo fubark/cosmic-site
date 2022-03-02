@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html data-theme="light">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="pico.min.css" />
+  <link rel="stylesheet" href="docs.css" />
+  <link rel="stylesheet" href="hljs-tomorrow.css" />
+  <title>Cosmic Docs | v0.1</title>
+</head>
+<body>
+  <main class="container-fluid"><aside><div>
+<h3><span class="primary">Cosmic</span> Docs</h3>
+<nav><select><option value="/docs">v0.1</option></select><section class="main-links"><ul><li><a href="index.html#about">About</a></li><li><a href="index.html#start">Getting Started</a></li><li><a href="index.html#tools">Tools</a></li><li><a href="index.html#community">Community</a></li></ul></section><section><div class="category secondary">API</div><ul><li><a id="audio" href="audio.html">cs.audio</a></li><li><a id="core" href="core.html">cs.core</a></li><li><a id="files" href="files.html">cs.files</a></li><li><a id="graphics" href="graphics.html">cs.graphics</a></li><li><a id="http" href="http.html">cs.http</a></li><li><a id="input" href="input.html">cs.input</a></li><li><a id="net" href="net.html">cs.net</a></li><li><a id="test" href="test.html">cs.test</a></li><li><a id="window" href="window.html">cs.window</a></li><li><a id="worker" href="worker.html">cs.worker</a></li></ul></section></nav></div></aside><div class="docs"><mark class="ns">cs.audio</mark>
+<h3>Audio Playback and Capture</h3>
+<p>This module provides a cross platform API to decode sound files, capture audio, and play audio. There is support for 3D Spatialization. You can adjust the listener's or sound's position, direction, and velocity. The positions are absolute values in the 3D space.</p><div class="func">
+  <a id="loadWav" href="#"><small class="secondary">cs.audio.</small>loadWav</a> <span class="params">(&nbsp;<span class="param">data: <span class="secondary">Uint8Array</span></span> )</span> <span class="return">object</span></div>
+<p class="func-desc">Decodes .wav data into a Sound handle.</p><div class="func">
+  <a id="loadWavFile" href="#"><small class="secondary">cs.audio.</small>loadWavFile</a> <span class="params">(&nbsp;<span class="param">path: <span class="secondary">string</span></span> )</span> <span class="return">object</span></div>
+<p class="func-desc">Decodes a .wav file into a Sound handle. File path can be absolute or relative to the cwd.</p><div class="func">
+  <a id="loadMp3" href="#"><small class="secondary">cs.audio.</small>loadMp3</a> <span class="params">(&nbsp;<span class="param">data: <span class="secondary">Uint8Array</span></span> )</span> <span class="return">object</span></div>
+<p class="func-desc">Decodes .mp3 data into a Sound handle.</p><div class="func">
+  <a id="loadMp3File" href="#"><small class="secondary">cs.audio.</small>loadMp3File</a> <span class="params">(&nbsp;<span class="param">path: <span class="secondary">string</span></span> )</span> <span class="return">object</span></div>
+<p class="func-desc">Decodes a .mp3 file into a Sound handle. File path can be absolute or relative to the cwd.</p><div class="func">
+  <a id="loadFlac" href="#"><small class="secondary">cs.audio.</small>loadFlac</a> <span class="params">(&nbsp;<span class="param">data: <span class="secondary">Uint8Array</span></span> )</span> <span class="return">object</span></div>
+<p class="func-desc">Decodes .flac data into a Sound handle.</p><div class="func">
+  <a id="loadFlacFile" href="#"><small class="secondary">cs.audio.</small>loadFlacFile</a> <span class="params">(&nbsp;<span class="param">path: <span class="secondary">string</span></span> )</span> <span class="return">object</span></div>
+<p class="func-desc">Decodes a .flac file into a Sound handle. File path can be absolute or relative to the cwd.</p><div class="func">
+  <a id="loadOgg" href="#"><small class="secondary">cs.audio.</small>loadOgg</a> <span class="params">(&nbsp;<span class="param">data: <span class="secondary">Uint8Array</span></span> )</span> <span class="return">object</span></div>
+<p class="func-desc">Decodes .ogg data into a Sound handle.</p><div class="func">
+  <a id="loadOggFile" href="#"><small class="secondary">cs.audio.</small>loadOggFile</a> <span class="params">(&nbsp;<span class="param">path: <span class="secondary">string</span></span> )</span> <span class="return">object</span></div>
+<p class="func-desc">Decodes a .ogg file into a Sound handle. File path can be absolute or relative to the cwd.</p><div class="func">
+  <a id="load" href="#"><small class="secondary">cs.audio.</small>load</a> <span class="params">(&nbsp;<span class="param">data: <span class="secondary">Uint8Array</span></span> )</span> <span class="return">object</span></div>
+<p class="func-desc">Attempt to decode wav, mp3, flac, or ogg data into a Sound handle.</p><div class="func">
+  <a id="loadFile" href="#"><small class="secondary">cs.audio.</small>loadFile</a> <span class="params">(&nbsp;<span class="param">path: <span class="secondary">string</span></span> )</span> <span class="return">object</span></div>
+<p class="func-desc">Attempt to decode wav, mp3, flac, or ogg file into a Sound handle. File path can be absolute or relative to the cwd.</p><div class="func">
+  <a id="setListenerPos" href="#"><small class="secondary">cs.audio.</small>setListenerPos</a> <span class="params">(&nbsp;<span class="param">: <span class="secondary">number</span></span>, <span class="param">: <span class="secondary">number</span></span>, <span class="param">: <span class="secondary">number</span></span> )</span> <span class="return"></span></div>
+<p class="func-desc">Sets the listener's position in 3D space.</p><div class="func">
+  <a id="getListenerPos" href="#"><small class="secondary">cs.audio.</small>getListenerPos</a> <span class="params">(&nbsp; )</span> <span class="return">Vec3</span></div>
+<p class="func-desc">Returns the listener's position in 3D space.</p><div class="func">
+  <a id="setListenerDir" href="#"><small class="secondary">cs.audio.</small>setListenerDir</a> <span class="params">(&nbsp;<span class="param">x: <span class="secondary">number</span></span>, <span class="param">y: <span class="secondary">number</span></span>, <span class="param">z: <span class="secondary">number</span></span> )</span> <span class="return"></span></div>
+<p class="func-desc">Sets the listener's forward direction in 3D space. See also setListenerUpDir.</p><div class="func">
+  <a id="getListenerDir" href="#"><small class="secondary">cs.audio.</small>getListenerDir</a> <span class="params">(&nbsp; )</span> <span class="return">Vec3</span></div>
+<p class="func-desc">Returns the listener's forward direction in 3D space.</p><div class="func">
+  <a id="setListenerUpDir" href="#"><small class="secondary">cs.audio.</small>setListenerUpDir</a> <span class="params">(&nbsp;<span class="param">x: <span class="secondary">number</span></span>, <span class="param">y: <span class="secondary">number</span></span>, <span class="param">z: <span class="secondary">number</span></span> )</span> <span class="return"></span></div>
+<p class="func-desc">Sets the listener's up direction in 3D space.</p><div class="func">
+  <a id="getListenerUpDir" href="#"><small class="secondary">cs.audio.</small>getListenerUpDir</a> <span class="params">(&nbsp; )</span> <span class="return">Vec3</span></div>
+<p class="func-desc">Returns the listener's up direction in 3D space.</p><div class="func">
+  <a id="setListenerVel" href="#"><small class="secondary">cs.audio.</small>setListenerVel</a> <span class="params">(&nbsp;<span class="param">x: <span class="secondary">number</span></span>, <span class="param">y: <span class="secondary">number</span></span>, <span class="param">z: <span class="secondary">number</span></span> )</span> <span class="return"></span></div>
+<p class="func-desc">Sets the listener's velocity in 3D space. This is for the doppler effect.</p><div class="func">
+  <a id="getListenerVel" href="#"><small class="secondary">cs.audio.</small>getListenerVel</a> <span class="params">(&nbsp; )</span> <span class="return">Vec3</span></div>
+<p class="func-desc">Returns the listener's velocity in 3D space.</p><div class="type">
+  <a id="Sound" href="#"><small class="secondary">cs.audio</small>.Sound</a> <span class="params">object</span></div>
+<p class="type-desc"></p><div class="func">
+  <a id="play" href="#"><small class="secondary">cs.audio.Sound</small><span class="method">play</span></a> <span class="params">(&nbsp; )</span> <span class="return"></span></div>
+<p class="func-desc">Plays the sound. This won't return until the sound is done playing.</p><div class="func">
+  <a id="playBg" href="#"><small class="secondary">cs.audio.Sound</small><span class="method">playBg</span></a> <span class="params">(&nbsp; )</span> <span class="return"></span></div>
+<p class="func-desc">Starts playing the sound in the background. Returns immediately. Playing the sound while it's already playing will rewind to the start and begin playback.</p><div class="func">
+  <a id="isPlayingBg" href="#"><small class="secondary">cs.audio.Sound</small><span class="method">isPlayingBg</span></a> <span class="params">(&nbsp; )</span> <span class="return">boolean</span></div>
+<p class="func-desc">Returns whether the sound is playing or looping in the background.</p><div class="func">
+  <a id="loopBg" href="#"><small class="secondary">cs.audio.Sound</small><span class="method">loopBg</span></a> <span class="params">(&nbsp; )</span> <span class="return"></span></div>
+<p class="func-desc">Starts looping the sound in the background.</p><div class="func">
+  <a id="isLoopingBg" href="#"><small class="secondary">cs.audio.Sound</small><span class="method">isLoopingBg</span></a> <span class="params">(&nbsp; )</span> <span class="return">boolean</span></div>
+<p class="func-desc">Returns whether the sound is looping in the background.</p><div class="func">
+  <a id="pauseBg" href="#"><small class="secondary">cs.audio.Sound</small><span class="method">pauseBg</span></a> <span class="params">(&nbsp; )</span> <span class="return"></span></div>
+<p class="func-desc">Pauses the playback.</p><div class="func">
+  <a id="resumeBg" href="#"><small class="secondary">cs.audio.Sound</small><span class="method">resumeBg</span></a> <span class="params">(&nbsp; )</span> <span class="return"></span></div>
+<p class="func-desc">Resumes the playback from the current cursor position. If the cursor is at the end, it will rewind to the start and begin playback.</p><div class="func">
+  <a id="stopBg" href="#"><small class="secondary">cs.audio.Sound</small><span class="method">stopBg</span></a> <span class="params">(&nbsp; )</span> <span class="return"></span></div>
+<p class="func-desc">Stops the playback and rewinds to the start.</p><div class="func">
+  <a id="setVolume" href="#"><small class="secondary">cs.audio.Sound</small><span class="method">setVolume</span></a> <span class="params">(&nbsp;<span class="param">volume: <span class="secondary">number</span></span> )</span> <span class="return"></span></div>
+<p class="func-desc">Sets the volume in a positive linear scale. Volume at 0 is muted. 1 is the default value.</p><div class="func">
+  <a id="getVolume" href="#"><small class="secondary">cs.audio.Sound</small><span class="method">getVolume</span></a> <span class="params">(&nbsp; )</span> <span class="return">number</span></div>
+<p class="func-desc">Returns the volume in a positive linear scale.</p><div class="func">
+  <a id="setGain" href="#"><small class="secondary">cs.audio.Sound</small><span class="method">setGain</span></a> <span class="params">(&nbsp;<span class="param">gain: <span class="secondary">number</span></span> )</span> <span class="return"></span></div>
+<p class="func-desc">Sets the volume with gain in decibels.</p><div class="func">
+  <a id="getGain" href="#"><small class="secondary">cs.audio.Sound</small><span class="method">getGain</span></a> <span class="params">(&nbsp; )</span> <span class="return">number</span></div>
+<p class="func-desc">Gets the gain in decibels.</p><div class="func">
+  <a id="setPitch" href="#"><small class="secondary">cs.audio.Sound</small><span class="method">setPitch</span></a> <span class="params">(&nbsp;<span class="param">pitch: <span class="secondary">number</span></span> )</span> <span class="return"></span></div>
+<p class="func-desc">Sets the pitch. A higher value results in a higher pitch and must be greater than 0. Default value is 1.</p><div class="func">
+  <a id="getPitch" href="#"><small class="secondary">cs.audio.Sound</small><span class="method">getPitch</span></a> <span class="params">(&nbsp; )</span> <span class="return">number</span></div>
+<p class="func-desc">Returns the current pitch.</p><div class="func">
+  <a id="setPan" href="#"><small class="secondary">cs.audio.Sound</small><span class="method">setPan</span></a> <span class="params">(&nbsp;<span class="param">pan: <span class="secondary">number</span></span> )</span> <span class="return"></span></div>
+<p class="func-desc">Sets the stereo pan. Default value is 0. Set to -1 to shift the sound to the left and +1 to shift the sound to the right.</p><div class="func">
+  <a id="getPan" href="#"><small class="secondary">cs.audio.Sound</small><span class="method">getPan</span></a> <span class="params">(&nbsp; )</span> <span class="return">number</span></div>
+<p class="func-desc">Returns the current stereo pan.</p><div class="func">
+  <a id="getLengthInPcmFrames" href="#"><small class="secondary">cs.audio.Sound</small><span class="method">getLengthInPcmFrames</span></a> <span class="params">(&nbsp; )</span> <span class="return">BigInt</span></div>
+<p class="func-desc">Returns the length of the sound in pcm frames. Unsupported for ogg.</p><div class="func">
+  <a id="getLength" href="#"><small class="secondary">cs.audio.Sound</small><span class="method">getLength</span></a> <span class="params">(&nbsp; )</span> <span class="return">BigInt</span></div>
+<p class="func-desc">Returns the length of the sound in milliseconds. Unsupported for ogg.</p><div class="func">
+  <a id="getCursorPcmFrame" href="#"><small class="secondary">cs.audio.Sound</small><span class="method">getCursorPcmFrame</span></a> <span class="params">(&nbsp; )</span> <span class="return">BigInt</span></div>
+<p class="func-desc">Returns the current playback position in pcm frames. Unsupported for ogg.</p><div class="func">
+  <a id="seekToPcmFrame" href="#"><small class="secondary">cs.audio.Sound</small><span class="method">seekToPcmFrame</span></a> <span class="params">(&nbsp;<span class="param">frameIndex: <span class="secondary">BigInt</span></span> )</span> <span class="return"></span></div>
+<p class="func-desc">Seeks to playback position in pcm frames.</p><div class="func">
+  <a id="setPosition" href="#"><small class="secondary">cs.audio.Sound</small><span class="method">setPosition</span></a> <span class="params">(&nbsp;<span class="param">x: <span class="secondary">number</span></span>, <span class="param">y: <span class="secondary">number</span></span>, <span class="param">z: <span class="secondary">number</span></span> )</span> <span class="return"></span></div>
+<p class="func-desc">Sets the sound's position in 3D space.</p><div class="func">
+  <a id="getPosition" href="#"><small class="secondary">cs.audio.Sound</small><span class="method">getPosition</span></a> <span class="params">(&nbsp; )</span> <span class="return">Vec3</span></div>
+<p class="func-desc">Returns the sound's position in 3D space.</p><div class="func">
+  <a id="setDirection" href="#"><small class="secondary">cs.audio.Sound</small><span class="method">setDirection</span></a> <span class="params">(&nbsp;<span class="param">x: <span class="secondary">number</span></span>, <span class="param">y: <span class="secondary">number</span></span>, <span class="param">z: <span class="secondary">number</span></span> )</span> <span class="return"></span></div>
+<p class="func-desc">Sets the sound's direction in 3D space.</p><div class="func">
+  <a id="getDirection" href="#"><small class="secondary">cs.audio.Sound</small><span class="method">getDirection</span></a> <span class="params">(&nbsp; )</span> <span class="return">Vec3</span></div>
+<p class="func-desc">Returns the sound's direction in 3D space.</p><div class="func">
+  <a id="setVelocity" href="#"><small class="secondary">cs.audio.Sound</small><span class="method">setVelocity</span></a> <span class="params">(&nbsp;<span class="param">x: <span class="secondary">number</span></span>, <span class="param">y: <span class="secondary">number</span></span>, <span class="param">z: <span class="secondary">number</span></span> )</span> <span class="return"></span></div>
+<p class="func-desc">Sets the sound's velocity in 3D space. This is for the doppler effect.</p><div class="func">
+  <a id="getVelocity" href="#"><small class="secondary">cs.audio.Sound</small><span class="method">getVelocity</span></a> <span class="params">(&nbsp; )</span> <span class="return">Vec3</span></div>
+<p class="func-desc">Returns the sound's velocity in 3D space.</p></div><aside class="symbols"><div>
+<nav><ul><li><a href="#loadWav">loadWav()</a></li><li><a href="#loadWavFile">loadWavFile()</a></li><li><a href="#loadMp3">loadMp3()</a></li><li><a href="#loadMp3File">loadMp3File()</a></li><li><a href="#loadFlac">loadFlac()</a></li><li><a href="#loadFlacFile">loadFlacFile()</a></li><li><a href="#loadOgg">loadOgg()</a></li><li><a href="#loadOggFile">loadOggFile()</a></li><li><a href="#load">load()</a></li><li><a href="#loadFile">loadFile()</a></li><li><a href="#setListenerPos">setListenerPos()</a></li><li><a href="#getListenerPos">getListenerPos()</a></li><li><a href="#setListenerDir">setListenerDir()</a></li><li><a href="#getListenerDir">getListenerDir()</a></li><li><a href="#setListenerUpDir">setListenerUpDir()</a></li><li><a href="#getListenerUpDir">getListenerUpDir()</a></li><li><a href="#setListenerVel">setListenerVel()</a></li><li><a href="#getListenerVel">getListenerVel()</a></li><li><a href="#Sound">Sound</a></li><li class="indent"><a href="#play">play()</a></li><li class="indent"><a href="#playBg">playBg()</a></li><li class="indent"><a href="#isPlayingBg">isPlayingBg()</a></li><li class="indent"><a href="#loopBg">loopBg()</a></li><li class="indent"><a href="#isLoopingBg">isLoopingBg()</a></li><li class="indent"><a href="#pauseBg">pauseBg()</a></li><li class="indent"><a href="#resumeBg">resumeBg()</a></li><li class="indent"><a href="#stopBg">stopBg()</a></li><li class="indent"><a href="#setVolume">setVolume()</a></li><li class="indent"><a href="#getVolume">getVolume()</a></li><li class="indent"><a href="#setGain">setGain()</a></li><li class="indent"><a href="#getGain">getGain()</a></li><li class="indent"><a href="#setPitch">setPitch()</a></li><li class="indent"><a href="#getPitch">getPitch()</a></li><li class="indent"><a href="#setPan">setPan()</a></li><li class="indent"><a href="#getPan">getPan()</a></li><li class="indent"><a href="#getLengthInPcmFrames">getLengthInPcmFrames()</a></li><li class="indent"><a href="#getLength">getLength()</a></li><li class="indent"><a href="#getCursorPcmFrame">getCursorPcmFrame()</a></li><li class="indent"><a href="#seekToPcmFrame">seekToPcmFrame()</a></li><li class="indent"><a href="#setPosition">setPosition()</a></li><li class="indent"><a href="#getPosition">getPosition()</a></li><li class="indent"><a href="#setDirection">setDirection()</a></li><li class="indent"><a href="#getDirection">getDirection()</a></li><li class="indent"><a href="#setVelocity">setVelocity()</a></li><li class="indent"><a href="#getVelocity">getVelocity()</a></li></ul></nav></div></aside></main> <script>
+     document.getElementById('audio').focus();
+ </script><script src="highlight.min.js"></script>
+<script>
+  hljs.highlightAll();
+</script></body></html>
