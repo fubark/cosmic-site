@@ -26,7 +26,7 @@ jobs:
         run: cd cosmic && zig build get-deps 
 
       - name: Gen docs.
-        run: cd cosmic && zig build gen-docs -Darg="../docs"
+        run: cd cosmic && zig build gen -Darg="docs" -Darg="../docs"
 
       - name: Commit.
         run: |
