@@ -6,12 +6,24 @@
   <link rel="stylesheet" href="pico.min.css" />
   <link rel="stylesheet" href="docs.css" />
   <link rel="stylesheet" href="hljs-tomorrow.css" />
+  <link rel="stylesheet" href="hljs-tomorrow-night-blue.css" />
   <title>Cosmic Docs | v0.1</title>
+  <script>
+    // Set correct theme before rest of page loads.
+    let theme = window.localStorage.getItem('theme')
+    if (!theme) {
+      theme = 'light'
+    }
+    document.documentElement.setAttribute('data-theme', theme);
+  </script>
 </head>
 <body>
+  <div class="top-nav grid">
+    <div><h3><span class="primary">Cosmic</span> Docs</h3></div>
+    <div class="top-menu"><a onclick="clickTheme()" href="#" role="button" class="outline">Theme</a></div>
+  </div>
   <main class="container-fluid"><aside><div>
-<h3><span class="primary">Cosmic</span> Docs</h3>
-<nav><select><option value="/docs">v0.1</option></select><section class="main-links"><ul><li><a href="index.html#about">About</a></li><li><a href="index.html#start">Getting Started</a></li><li><a href="index.html#tools">Tools</a></li><li><a href="index.html#tutorial">Tutorials</a></li><li><a href="index.html#community">Community</a></li></ul></section><section><div class="category secondary">API</div><ul><li><a id="audio" href="audio.html">cs.audio</a></li><li><a id="core" href="core.html">cs.core</a></li><li><a id="files" href="files.html">cs.files</a></li><li><a id="graphics" href="graphics.html">cs.graphics</a></li><li><a id="http" href="http.html">cs.http</a></li><li><a id="input" href="input.html">cs.input</a></li><li><a id="net" href="net.html">cs.net</a></li><li><a id="test" href="test.html">cs.test</a></li><li><a id="window" href="window.html">cs.window</a></li><li><a id="worker" href="worker.html">cs.worker</a></li></ul></section></nav></div></aside><div class="docs"><a href="#" id="about"></a>
+<nav><select><option value="/docs">v0.1</option></select><section class="main-links"><ul><li><a href="index.html#about">About</a></li><li><a href="index.html#start">Getting Started</a></li><li><a href="index.html#tools">Tools</a></li><li><a href="index.html#tutorial">Tutorials</a></li><li><a href="index.html#community">Community</a></li></ul></section><section><div class="category secondary">API</div><ul><li><a id="audio" href="audio.html">cs.audio</a></li><li><a id="core" href="core.html">cs.core</a></li><li><a id="files" href="files.html">cs.files</a></li><li><a id="graphics" href="graphics.html">cs.graphics</a></li><li><a id="http" href="http.html">cs.http</a></li><li><a id="input" href="input.html">cs.input</a></li><li><a id="net" href="net.html">cs.net</a></li><li><a id="test" href="test.html">cs.test</a></li><li><a id="window" href="window.html">cs.window</a></li><li><a id="worker" href="worker.html">cs.worker</a></li></ul></section></nav></div></aside><div class="docs"><a class="nav-link" href="#" id="about"></a>
 <h3>Cosmic</h3>
 <p>
     Cosmic is a simple Javascript and WASM runtime for developing Desktop, Gaming, Backend, and Web applications.
@@ -60,7 +72,7 @@
 <h3></h3>
 <p></p>
 
-<a href="#" id="install"></a>
+<a class="nav-link" href="#" id="install"></a>
 <h3>Install</h3>
 <p>
     Download links can be found here: <a href="https://github.com/fubark/cosmic/releases">Downloads</a>.
@@ -69,7 +81,7 @@
     One liner cli install commands will make it here eventually.
 </p>
 
-<a href="#" id="start"></a>
+<a class="nav-link" href="#" id="start"></a>
 <h3>Getting Started</h3>
 <h6>Hello World</h6>
 <p>First make sure you have <a href="#install">downloaded</a> Cosmic for your platform. Open up your text editor and create hello.js:</p>
@@ -77,7 +89,7 @@
 
 puts('Hello World!')
 
-const w = cs.window.create('Demo', 1200, 720)
+const w = cs.window.create(1200, 720, 'Demo')
 w.onUpdate(g => {
     g.fontSize(52)
     g.fillColor(Color.blue)
@@ -94,7 +106,7 @@ cosmic cosmic/examples/demo.js
 
 <p>You can find more examples <a href="https://github.com/fubark/cosmic/tree/master/examples">here</a>!</p>
 
-<a href="#" id="tools"></a>
+<a class="nav-link" href="#" id="tools"></a>
 <h3>Tools</h3>
 <p>One of the goals for Cosmic is to provide useful tools to help you develop software.</p>
 
@@ -113,11 +125,11 @@ cosmic cosmic/examples/demo.js
 <div><b>cosmic https</b> ./public my.crt my.key 8081</div>
 <p>Like `cosmic http` but secure. You'll need to supply your public and private keys.</p>
 <div><b>cosmic shell</b></div>
-<p>Starts a shell where you can do some quick calculations or experiment before creating a script.</p>
+<p>Starts a shell where you can perform quick calculations or experiment with the API before creating a script. Note: The window API does not work in the shell currently.</p>
 <div><b>cosmic *more*</b></div>
 <p>Do you think we're missing something? Voice your opinion on Discord or open an issue on Github!</p>
 
-<a href="#" id="tutorial"></a>
+<a class="nav-link" href="#" id="tutorial"></a>
 <h3>Tutorials</h3>
 <p>Tutorials and learning material will be posted up when they are available.</p>
 
@@ -149,15 +161,24 @@ cosmic cosmic/examples/demo.js
 
 <h6>Exporting</h6>
 
-<a href="#" id="community"></a>
+<a class="nav-link" href="#" id="community"></a>
 <h3>Community</h3>
 <p>
     <a href="https://discord.gg/YF82GYvBxQ" target="_blank"><img src="https://img.shields.io/discord/828041790711136274.svg?color=7289da&label=Discord&logo=discord&style=for-the-badge"/></a>
 </p>
 
-<a href="#" id="contribute"></a>
+<a class="nav-link" href="#" id="contribute"></a>
 <h3>Contributing</h3>
 <p>Head on over to the <a href="https://github.com/fubark/cosmic">github repo</a> to learn how to contribute!</p></div></main><script src="highlight.min.js"></script>
 <script>
   hljs.highlightAll();
+  function clickTheme() {
+    if (theme == 'light') {
+      theme = 'dark'
+    } else {
+      theme = 'light'
+    }
+    window.localStorage.setItem('theme', theme)
+    document.documentElement.setAttribute('data-theme', theme)
+  }
 </script></body></html>

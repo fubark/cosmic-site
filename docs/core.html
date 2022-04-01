@@ -6,11 +6,23 @@
   <link rel="stylesheet" href="pico.min.css" />
   <link rel="stylesheet" href="docs.css" />
   <link rel="stylesheet" href="hljs-tomorrow.css" />
+  <link rel="stylesheet" href="hljs-tomorrow-night-blue.css" />
   <title>Cosmic Docs | v0.1</title>
+  <script>
+    // Set correct theme before rest of page loads.
+    let theme = window.localStorage.getItem('theme')
+    if (!theme) {
+      theme = 'light'
+    }
+    document.documentElement.setAttribute('data-theme', theme);
+  </script>
 </head>
 <body>
+  <div class="top-nav grid">
+    <div><h3><span class="primary">Cosmic</span> Docs</h3></div>
+    <div class="top-menu"><a onclick="clickTheme()" href="#" role="button" class="outline">Theme</a></div>
+  </div>
   <main class="container-fluid"><aside><div>
-<h3><span class="primary">Cosmic</span> Docs</h3>
 <nav><select><option value="/docs">v0.1</option></select><section class="main-links"><ul><li><a href="index.html#about">About</a></li><li><a href="index.html#start">Getting Started</a></li><li><a href="index.html#tools">Tools</a></li><li><a href="index.html#tutorial">Tutorials</a></li><li><a href="index.html#community">Community</a></li></ul></section><section><div class="category secondary">API</div><ul><li><a id="audio" href="audio.html">cs.audio</a></li><li><a id="core" href="core.html">cs.core</a></li><li><a id="files" href="files.html">cs.files</a></li><li><a id="graphics" href="graphics.html">cs.graphics</a></li><li><a id="http" href="http.html">cs.http</a></li><li><a id="input" href="input.html">cs.input</a></li><li><a id="net" href="net.html">cs.net</a></li><li><a id="test" href="test.html">cs.test</a></li><li><a id="window" href="window.html">cs.window</a></li><li><a id="worker" href="worker.html">cs.worker</a></li></ul></section></nav></div></aside><div class="docs"><mark class="ns">cs.core</mark>
 <h3>Core</h3>
 <p>Contains common utilities. All functions here are also available in the global scope. You can call them directly without the cs.core prefix.</p><div class="func">
@@ -31,7 +43,11 @@
   <a id="getMainScriptDir" href="#"><small class="secondary">cs.core.</small>getMainScriptDir</a> <span class="params">(&nbsp; )</span> <span class="return">string</span></div>
 <p class="func-desc">Returns the absolute path of the main script's directory. Does not include an ending slash. This is useful if you have additional source or assets that depends on the location of your main script.</p><div class="func">
   <a id="getAppDir" href="#"><small class="secondary">cs.core.</small>getAppDir</a> <span class="params">(&nbsp;<span class="param">: <span class="secondary">string</span></span> )</span> <span class="return">string</span></div>
-<p class="func-desc">Given an app name, returns the platform's app directory to read/write files to. This does not ensure that the directory exists. See ensurePath.</p><div class="func">
+<p class="func-desc">Given an app name, returns the platform's app directory to read/write files to. This does not ensure that the directory exists. See cs.files.ensurePath.</p><div class="func">
+  <a id="getClipboardText" href="#"><small class="secondary">cs.core.</small>getClipboardText</a> <span class="params">(&nbsp; )</span> <span class="return">string</span></div>
+<p class="func-desc">Get the current clipboard text.</p><div class="func">
+  <a id="setClipboardText" href="#"><small class="secondary">cs.core.</small>setClipboardText</a> <span class="params">(&nbsp;<span class="param">text: <span class="secondary">string</span></span> )</span> <span class="return"></span></div>
+<p class="func-desc">Set the current clipboard text.</p><div class="func">
   <a id="panic" href="#"><small class="secondary">cs.core.</small>panic</a> <span class="params">(&nbsp;<span class="param">msg: <span class="secondary">?string</span></span> )</span> <span class="return"></span></div>
 <p class="func-desc">Prints the current stack trace and exits the program with an error code. This is useful to short circuit your program.</p><div class="func">
   <a id="exit" href="#"><small class="secondary">cs.core.</small>exit</a> <span class="params">(&nbsp;<span class="param">code: <span class="secondary">number</span></span> )</span> <span class="return"></span></div>
@@ -68,14 +84,24 @@
   <a id="ConnectFailed" href="#"><small class="secondary">cs.core.</small>CsError.ConnectFailed</a></div><div class="constant">
   <a id="CertVerify" href="#"><small class="secondary">cs.core.</small>CsError.CertVerify</a></div><div class="constant">
   <a id="CertBadFile" href="#"><small class="secondary">cs.core.</small>CsError.CertBadFile</a></div><div class="constant">
+  <a id="CantResolveHost" href="#"><small class="secondary">cs.core.</small>CsError.CantResolveHost</a></div><div class="constant">
   <a id="InvalidFormat" href="#"><small class="secondary">cs.core.</small>CsError.InvalidFormat</a></div><div class="constant">
   <a id="Unsupported" href="#"><small class="secondary">cs.core.</small>CsError.Unsupported</a></div><div class="constant">
   <a id="Unknown" href="#"><small class="secondary">cs.core.</small>CsError.Unknown</a></div><div class="constant">
   <a id="NotAnError" href="#"><small class="secondary">cs.core.</small>CsError.NotAnError</a></div></div>
 <p class="type-desc"></p></div><aside class="symbols"><div>
-<nav><ul><li><a href="#getCliArgs">getCliArgs()</a></li><li><a href="#print">print()</a></li><li><a href="#puts">puts()</a></li><li><a href="#dump">dump()</a></li><li><a href="#bufferToUtf8">bufferToUtf8()</a></li><li><a href="#setTimeout">setTimeout()</a></li><li><a href="#getMainScriptPath">getMainScriptPath()</a></li><li><a href="#getMainScriptDir">getMainScriptDir()</a></li><li><a href="#getAppDir">getAppDir()</a></li><li><a href="#panic">panic()</a></li><li><a href="#exit">exit()</a></li><li><a href="#errCode">errCode()</a></li><li><a href="#errString">errString()</a></li><li><a href="#clearError">clearError()</a></li><li><a href="#getOs">getOs()</a></li><li><a href="#getOsVersion">getOsVersion()</a></li><li><a href="#getCpu">getCpu()</a></li><li><a href="#getResourceUsage">getResourceUsage()</a></li><li><a href="#gc">gc()</a></li><li><a href="#ResourceUsage">ResourceUsage</a></li><li><a href="#Os">Os</a></li><li><a href="#CsError">CsError</a></li></ul></nav></div></aside></main> <script>
+<nav><ul><li><a href="#getCliArgs">getCliArgs()</a></li><li><a href="#print">print()</a></li><li><a href="#puts">puts()</a></li><li><a href="#dump">dump()</a></li><li><a href="#bufferToUtf8">bufferToUtf8()</a></li><li><a href="#setTimeout">setTimeout()</a></li><li><a href="#getMainScriptPath">getMainScriptPath()</a></li><li><a href="#getMainScriptDir">getMainScriptDir()</a></li><li><a href="#getAppDir">getAppDir()</a></li><li><a href="#getClipboardText">getClipboardText()</a></li><li><a href="#setClipboardText">setClipboardText()</a></li><li><a href="#panic">panic()</a></li><li><a href="#exit">exit()</a></li><li><a href="#errCode">errCode()</a></li><li><a href="#errString">errString()</a></li><li><a href="#clearError">clearError()</a></li><li><a href="#getOs">getOs()</a></li><li><a href="#getOsVersion">getOsVersion()</a></li><li><a href="#getCpu">getCpu()</a></li><li><a href="#getResourceUsage">getResourceUsage()</a></li><li><a href="#gc">gc()</a></li><li><a href="#ResourceUsage">ResourceUsage</a></li><li><a href="#Os">Os</a></li><li><a href="#CsError">CsError</a></li></ul></nav></div></aside></main> <script>
      document.getElementById('core').focus();
  </script><script src="highlight.min.js"></script>
 <script>
   hljs.highlightAll();
+  function clickTheme() {
+    if (theme == 'light') {
+      theme = 'dark'
+    } else {
+      theme = 'light'
+    }
+    window.localStorage.setItem('theme', theme)
+    document.documentElement.setAttribute('data-theme', theme)
+  }
 </script></body></html>
