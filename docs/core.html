@@ -26,7 +26,7 @@
 <nav><select><option value="/docs">v0.1</option></select><section class="main-links"><ul><li><a href="index.html#about">About</a></li><li><a href="index.html#start">Getting Started</a></li><li><a href="index.html#tools">Tools</a></li><li><a href="index.html#tutorial">Tutorials</a></li><li><a href="index.html#community">Community</a></li></ul></section><section><div class="category secondary">API</div><ul><li><a id="audio" href="audio.html">cs.audio</a></li><li><a id="core" href="core.html">cs.core</a></li><li><a id="files" href="files.html">cs.files</a></li><li><a id="graphics" href="graphics.html">cs.graphics</a></li><li><a id="http" href="http.html">cs.http</a></li><li><a id="input" href="input.html">cs.input</a></li><li><a id="net" href="net.html">cs.net</a></li><li><a id="test" href="test.html">cs.test</a></li><li><a id="window" href="window.html">cs.window</a></li><li><a id="worker" href="worker.html">cs.worker</a></li></ul></section></nav></div></aside><div class="docs"><mark class="ns">cs.core</mark>
 <h3>Core</h3>
 <p>Contains common utilities. All functions here are also available in the global scope. You can call them directly without the cs.core prefix.</p><div class="func">
-  <a id="getCliArgs" href="#"><small class="secondary">cs.core.</small>getCliArgs</a> <span class="params">(&nbsp; )</span> <span class="return">Array</span></div>
+  <a id="getCliArgs" href="#"><small class="secondary">cs.core.</small>getCliArgs</a> <span class="params">(&nbsp; )</span> <span class="return">.v8.Array</span></div>
 <p class="func-desc">Returns an array of arguments used to start the process in the command line.</p><div class="func">
   <a id="print" href="#"><small class="secondary">cs.core.</small>print</a> <span class="params">(&nbsp;<span class="param">args: <span class="secondary">?...any</span></span> )</span> <span class="return"></span></div>
 <p class="func-desc">Prints any number of variables as strings separated by " ".</p><div class="func">
@@ -34,8 +34,14 @@
 <p class="func-desc">Prints any number of variables as strings separated by " ". Wraps to the next line.</p><div class="func">
   <a id="dump" href="#"><small class="secondary">cs.core.</small>dump</a> <span class="params">(&nbsp;<span class="param">args: <span class="secondary">?...any</span></span> )</span> <span class="return"></span></div>
 <p class="func-desc">Prints a descriptive string of the js value(s) separated by " ". Wraps to the next line.</p><div class="func">
+  <a id="gets" href="#"><small class="secondary">cs.core.</small>gets</a> <span class="params">(&nbsp; )</span> <span class="return">string</span></div>
+<p class="func-desc">Reads input from the command line until a new line returned.</p><div class="func">
+  <a id="timerNow" href="#"><small class="secondary">cs.core.</small>timerNow</a> <span class="params">(&nbsp; )</span> <span class="return">BigInt</span></div>
+<p class="func-desc">Returns the current timestamp since the runtime started in nanoseconds.</p><div class="func">
   <a id="bufferToUtf8" href="#"><small class="secondary">cs.core.</small>bufferToUtf8</a> <span class="params">(&nbsp;<span class="param">buffer: <span class="secondary">Uint8Array</span></span> )</span> <span class="return">string</span></div>
 <p class="func-desc">Converts a buffer to a UTF-8 string.</p><div class="func">
+  <a id="createRandom" href="#"><small class="secondary">cs.core.</small>createRandom</a> <span class="params">(&nbsp;<span class="param">seed: <span class="secondary">BigInt</span></span> )</span> <span class="return">object</span></div>
+<p class="func-desc">Create a fast random number generator for a given seed. This should not be used for cryptographically secure random numbers.</p><div class="func">
   <a id="setTimeout" href="#"><small class="secondary">cs.core.</small>setTimeout</a> <span class="params">(&nbsp;<span class="param">timeout: <span class="secondary">number</span></span>, <span class="param">callback: <span class="secondary">function</span></span>, <span class="param">callbackArg: <span class="secondary">?any</span></span> )</span> <span class="return">number</span></div>
 <p class="func-desc">Invoke a callback after a timeout in milliseconds.</p><div class="func">
   <a id="getMainScriptPath" href="#"><small class="secondary">cs.core.</small>getMainScriptPath</a> <span class="params">(&nbsp; )</span> <span class="return">string</span></div>
@@ -54,20 +60,24 @@
 <p class="func-desc">Terminate the program with a code. Use code=0 for a successful exit and a positive value for an error exit.</p><div class="func">
   <a id="errCode" href="#"><small class="secondary">cs.core.</small>errCode</a> <span class="params">(&nbsp; )</span> <span class="return">number</span></div>
 <p class="func-desc">Returns the last error code. API calls that return null will set their error code to be queried by errCode() and errString().</p><div class="func">
-  <a id="errString" href="#"><small class="secondary">cs.core.</small>errString</a> <span class="params">(&nbsp;<span class="param">: <span class="secondary">CsError</span></span> )</span> <span class="return">string</span></div>
+  <a id="errString" href="#"><small class="secondary">cs.core.</small>errString</a> <span class="params">(&nbsp;<span class="param">: <span class="secondary">cosmic.api.cs_core.CsError</span></span> )</span> <span class="return">string</span></div>
 <p class="func-desc">Returns an error message for an error code.</p><div class="func">
   <a id="clearError" href="#"><small class="secondary">cs.core.</small>clearError</a> <span class="params">(&nbsp; )</span> <span class="return"></span></div>
 <p class="func-desc">Clears the last error.</p><div class="func">
-  <a id="getOs" href="#"><small class="secondary">cs.core.</small>getOs</a> <span class="params">(&nbsp; )</span> <span class="return">Os</span></div>
+  <a id="getOs" href="#"><small class="secondary">cs.core.</small>getOs</a> <span class="params">(&nbsp; )</span> <span class="return">cosmic.api.cs_core.Os</span></div>
 <p class="func-desc">Returns the host operating system.</p><div class="func">
   <a id="getOsVersion" href="#"><small class="secondary">cs.core.</small>getOsVersion</a> <span class="params">(&nbsp; )</span> <span class="return">string</span></div>
 <p class="func-desc">Returns the host operating system and version number as a string.</p><div class="func">
   <a id="getCpu" href="#"><small class="secondary">cs.core.</small>getCpu</a> <span class="params">(&nbsp; )</span> <span class="return">string</span></div>
 <p class="func-desc">Returns the host cpu arch and model as a string.</p><div class="func">
-  <a id="getResourceUsage" href="#"><small class="secondary">cs.core.</small>getResourceUsage</a> <span class="params">(&nbsp; )</span> <span class="return">ResourceUsage</span></div>
+  <a id="getResourceUsage" href="#"><small class="secondary">cs.core.</small>getResourceUsage</a> <span class="params">(&nbsp; )</span> <span class="return">cosmic.api.cs_core.ResourceUsage</span></div>
 <p class="func-desc">Returns the resource usage of the current process.</p><div class="func">
   <a id="gc" href="#"><small class="secondary">cs.core.</small>gc</a> <span class="params">(&nbsp; )</span> <span class="return"></span></div>
 <p class="func-desc">Invokes the JS engine garbage collector.</p><div class="type">
+  <a id="Random" href="#"><small class="secondary">cs.core</small>.Random</a> <span class="params">object</span></div>
+<p class="type-desc"></p><div class="func">
+  <a id="next" href="#"><small class="secondary">cs.core.Random</small><span class="method">next</span></a> <span class="params">(&nbsp; )</span> <span class="return">number</span></div>
+<p class="func-desc">Gets the next random number between 0 and 1.</p><div class="type">
   <a id="ResourceUsage" href="#"><small class="secondary">cs.core</small>.ResourceUsage</a> <span class="params">object</span><div class="indent field"><span class="primary">user_time_secs</span>: number</div><div class="indent field"><span class="primary">user_time_usecs</span>: number</div><div class="indent field"><span class="primary">sys_time_secs</span>: number</div><div class="indent field"><span class="primary">sys_time_usecs</span>: number</div><div class="indent field"><span class="primary">memory</span>: number</div></div>
 <p class="type-desc"></p><div class="type">
   <a id="Os" href="#"><small class="secondary">cs.core</small>.Os</a> <span class="params">enum</span><div class="constant">
@@ -90,7 +100,7 @@
   <a id="Unknown" href="#"><small class="secondary">cs.core.</small>CsError.Unknown</a></div><div class="constant">
   <a id="NotAnError" href="#"><small class="secondary">cs.core.</small>CsError.NotAnError</a></div></div>
 <p class="type-desc"></p></div><aside class="symbols"><div>
-<nav><ul><li><a href="#getCliArgs">getCliArgs()</a></li><li><a href="#print">print()</a></li><li><a href="#puts">puts()</a></li><li><a href="#dump">dump()</a></li><li><a href="#bufferToUtf8">bufferToUtf8()</a></li><li><a href="#setTimeout">setTimeout()</a></li><li><a href="#getMainScriptPath">getMainScriptPath()</a></li><li><a href="#getMainScriptDir">getMainScriptDir()</a></li><li><a href="#getAppDir">getAppDir()</a></li><li><a href="#getClipboardText">getClipboardText()</a></li><li><a href="#setClipboardText">setClipboardText()</a></li><li><a href="#panic">panic()</a></li><li><a href="#exit">exit()</a></li><li><a href="#errCode">errCode()</a></li><li><a href="#errString">errString()</a></li><li><a href="#clearError">clearError()</a></li><li><a href="#getOs">getOs()</a></li><li><a href="#getOsVersion">getOsVersion()</a></li><li><a href="#getCpu">getCpu()</a></li><li><a href="#getResourceUsage">getResourceUsage()</a></li><li><a href="#gc">gc()</a></li><li><a href="#ResourceUsage">ResourceUsage</a></li><li><a href="#Os">Os</a></li><li><a href="#CsError">CsError</a></li></ul></nav></div></aside></main> <script>
+<nav><ul><li><a href="#getCliArgs">getCliArgs()</a></li><li><a href="#print">print()</a></li><li><a href="#puts">puts()</a></li><li><a href="#dump">dump()</a></li><li><a href="#gets">gets()</a></li><li><a href="#timerNow">timerNow()</a></li><li><a href="#bufferToUtf8">bufferToUtf8()</a></li><li><a href="#createRandom">createRandom()</a></li><li><a href="#setTimeout">setTimeout()</a></li><li><a href="#getMainScriptPath">getMainScriptPath()</a></li><li><a href="#getMainScriptDir">getMainScriptDir()</a></li><li><a href="#getAppDir">getAppDir()</a></li><li><a href="#getClipboardText">getClipboardText()</a></li><li><a href="#setClipboardText">setClipboardText()</a></li><li><a href="#panic">panic()</a></li><li><a href="#exit">exit()</a></li><li><a href="#errCode">errCode()</a></li><li><a href="#errString">errString()</a></li><li><a href="#clearError">clearError()</a></li><li><a href="#getOs">getOs()</a></li><li><a href="#getOsVersion">getOsVersion()</a></li><li><a href="#getCpu">getCpu()</a></li><li><a href="#getResourceUsage">getResourceUsage()</a></li><li><a href="#gc">gc()</a></li><li><a href="#Random">Random</a></li><li class="indent"><a href="#next">next()</a></li><li><a href="#ResourceUsage">ResourceUsage</a></li><li><a href="#Os">Os</a></li><li><a href="#CsError">CsError</a></li></ul></nav></div></aside></main> <script>
      document.getElementById('core').focus();
  </script><script src="highlight.min.js"></script>
 <script>
