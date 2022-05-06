@@ -36,7 +36,7 @@
 <p class="func-desc"></p><div class="func">
   <a id="request" href="#"><small class="secondary">cs.http.</small>request</a> <span class="params">(&nbsp;<span class="param">url: <span class="secondary">string</span></span>, <span class="param">options: <span class="secondary">?RequestOptions</span></span> )</span> <span class="return">Response</span></div>
 <p class="func-desc">Returns Response object if request was successful. Throws exception if there was a connection or protocol error.</p><div class="func">
-  <a id="requestAsync" href="#"><small class="secondary">cs.http.</small>requestAsync</a> <span class="params">(&nbsp;<span class="param">url: <span class="secondary">string</span></span>, <span class="param">options: <span class="secondary">?RequestOptions</span></span> )</span> <span class="return">cosmic.adapter.PromiseSkipJsGen</span></div>
+  <a id="requestAsync" href="#"><small class="secondary">cs.http.</small>requestAsync</a> <span class="params">(&nbsp;<span class="param">url: <span class="secondary">string</span></span>, <span class="param">options: <span class="secondary">?RequestOptions</span></span> )</span> <span class="return">runtime.adapter.PromiseSkipJsGen</span></div>
 <p class="func-desc"></p><div class="func">
   <a id="serveHttp" href="#"><small class="secondary">cs.http.</small>serveHttp</a> <span class="params">(&nbsp;<span class="param">host: <span class="secondary">string</span></span>, <span class="param">port: <span class="secondary">number</span></span> )</span> <span class="return">object</span></div>
 <p class="func-desc">Starts a HTTP server and returns the handle.</p><div class="func">
@@ -58,7 +58,7 @@
 <p class="func-desc">Request the server to close. It will gracefully shutdown in the background.</p><div class="func">
   <a id="closeAsync" href="#"><small class="secondary">cs.http.Server</small><span class="method">closeAsync</span></a> <span class="params">(&nbsp; )</span> <span class="return">Promise</span></div>
 <p class="func-desc">Requests the server to close. The promise will resolve when it's done.</p><div class="func">
-  <a id="getBindAddress" href="#"><small class="secondary">cs.http.Server</small><span class="method">getBindAddress</span></a> <span class="params">(&nbsp; )</span> <span class="return">cosmic.adapter.RtTempStruct(cosmic.api.cs_http.Address)</span></div>
+  <a id="getBindAddress" href="#"><small class="secondary">cs.http.Server</small><span class="method">getBindAddress</span></a> <span class="params">(&nbsp; )</span> <span class="return">runtime.adapter.RtTempStruct(runtime.api.cs_http.Address)</span></div>
 <p class="func-desc"></p><div class="type">
   <a id="Address" href="#"><small class="secondary">cs.http</small>.Address</a> <span class="params">object</span><div class="indent field"><span class="primary">host</span>: string</div><div class="indent field"><span class="primary">port</span>: number</div></div>
 <p class="type-desc"></p><div class="type">
