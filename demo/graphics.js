@@ -1,301 +1,272 @@
-// Js canvas ops.
 function initGraphicsImports(wasm, canvas) {
-    const ctx = canvas.getContext('2d');
-
-    const text_decoder = new TextDecoder();
+    const text_decoder = new TextDecoder()
+    const text_encoder = new TextEncoder()
     function getString(ptr, len) {
-        return text_decoder.decode(wasm.exports.memory.buffer.slice(ptr, ptr+len));
+        return text_decoder.decode(wasm.exports.memory.buffer.slice(ptr, ptr+len))
     }
 
-    const fontToName = new Map();
-    const nameToFont = new Map();
-    const pi_2 = 2 * Math.PI;
-    let fillColor = [];
-    let strokeColor = [];
-    let clearColor = 'black';
-    const images = new Map();
-    let nextImageId = 1; 
-
-    let wasmBufferView = null;
-
-    function jsGetFont(namePtr, nameLen) {
-        const name = getString(namePtr, nameLen).toLowerCase();
-        let id = nameToFont.get(name);
-        if (!id) {
-            id = nameToFont.size + 1;
-            nameToFont.set(name, id);
-            fontToName.set(id, name);
-        }
-        return id;
-    }
+    // Default context options: https://www.khronos.org/registry/webgl/specs/latest/1.0/index.html#WEBGLCONTEXTATTRIBUTES
+    const ctx = canvas.getContext('webgl2', {
+        // Implement antialias internally with msaa or fxaa.
+        // Explicitly set to false since it is true by default and interferes with custom implementations. eg. INVALID_OPERATION when blitting with multisampled framebuffer.
+        antialias: false
+    })
 
     const dpr = window.devicePixelRatio || 1;
     let css_width = 0;
     let css_height = 0;
 
+    const unused_res_ids = []
+    let next_res_id = 1
+
+    function getNextResId() {
+        if (unused_res_ids.length > 0) {
+            return unused_res_ids.shift()
+        } else {
+            const id = next_res_id
+            next_res_id += 1
+            return id
+        }
+    }
+
+    function removeResId(id) {
+        unused_res_ids.push(id)
+    }
+
+    const textures = new Map()
+    const framebuffers = new Map()
+    const renderbuffers = new Map()
+    const vertex_arrays = new Map()
+    const shaders = new Map()
+    const programs = new Map()
+    const buffers = new Map()
+    const uniform_locs = new Map()
+
     return {
         jsSetCanvasBuffer(width, height) {
-            canvas.style.width = `${width}px`;
-            canvas.style.height = `${height}px`;
-            canvas.width = width * dpr;
-            canvas.height = height * dpr;
-            css_width = width;
-            css_height = height;
-            // Start drawing glyphs from top left corner.
-            // Needs to be set after changing canvas buffer.
-            ctx.textBaseline = 'top';
+            canvas.style.width = `${width}px`
+            canvas.style.height = `${height}px`
+            canvas.width = width * dpr
+            canvas.height = height * dpr
+            css_width = width
+            css_height = height
+            return dpr
         },
-        jsBeginFrame() {
-            ctx.scale(dpr, dpr);
-            ctx.fillStyle = clearColor;
-            ctx.fillRect(0, 0, css_width, css_height);
-        },
-        jsSetClearColor(r, g, b, a) {
-            clearColor = `rgba(${r},${g},${b},${a})`;
-        },
-        jsFillStyle(r, g, b, a) {
-            fillColor = [r, g, b, a];
-            ctx.fillStyle = `rgba(${r},${g},${b},${a})`;
-        },
-        jsStrokeStyle(r, g, b, a) {
-            strokeColor = [r, g, b, a];
-            ctx.strokeStyle = `rgba(${r},${g},${b},${a})`;
-        },
-        jsFillRect(x, y, width, height) {
-            ctx.fillRect(x, y, width, height);
-        },
-        jsDrawRect(x, y, width, height) {
-            ctx.beginPath();
-            ctx.rect(x, y, width, height);
-            ctx.stroke();
-        },
-        jsFillCircle(x, y, radius) {
-            ctx.beginPath();
-            ctx.arc(x, y, radius, 0, pi_2);
-            ctx.fill();
-        },
-        jsDrawCircle(x, y, radius) {
-            ctx.beginPath();
-            ctx.arc(x, y, radius, 0, pi_2);
-            ctx.stroke();
-        },
-        jsFillCircleSector(x, y, radius, start, end) {
-            ctx.beginPath();
-            ctx.moveTo(x, y);
-            ctx.arc(x, y, radius, start, end);
-            ctx.lineTo(x, y);
-            ctx.fill();
-        },
-        jsDrawCircleArc(x, y, radius, start, end) {
-            ctx.beginPath(x, y);
-            ctx.arc(x, y, radius, start, end);
-            ctx.stroke();
-        },
-        jsDrawEllipse(x, y, h_radius, v_radius) {
-            ctx.beginPath();
-            ctx.ellipse(x, y, h_radius, v_radius, 0, 0, pi_2);
-            ctx.stroke();
-        },
-        jsFillEllipse(x, y, h_radius, v_radius) {
-            ctx.beginPath();
-            ctx.ellipse(x, y, h_radius, v_radius, 0, 0, pi_2);
-            ctx.fill();
-        },
-        jsFillEllipseSector(x, y, h_radius, v_radius, start, end) {
-            ctx.beginPath();
-            ctx.moveTo(x, y);
-            ctx.ellipse(x, y, h_radius, v_radius, 0, start, end);
-            ctx.lineTo(x, y);
-            ctx.fill();
-        },
-        jsDrawEllipseArc(x, y, h_radius, v_radius, start, end) {
-            ctx.beginPath();
-            ctx.ellipse(x, y, h_radius, v_radius, 0, start, end);
-            ctx.stroke();
-        },
-        jsFillTriangle(x1, y1, x2, y2, x3, y3) {
-            ctx.beginPath();
-            ctx.moveTo(x1, y1);
-            ctx.lineTo(x2, y2);
-            ctx.lineTo(x3, y3);
-            ctx.closePath();
-            ctx.fill();
-        },
-        jsFillPolygon(ptr, num_verts) {
-            wasmBufferView = new DataView(wasm.exports.memory.buffer);
-            ctx.beginPath();
-            var curPtr = ptr;
-            const x = wasmBufferView.getFloat32(curPtr, true);
-            const y = wasmBufferView.getFloat32(curPtr + 4, true);
-            ctx.moveTo(x, y);
-            curPtr += 8;
-            for (let i = 1; i < num_verts; i++) {
-                const x = wasmBufferView.getFloat32(curPtr, true);
-                const y = wasmBufferView.getFloat32(curPtr + 4, true);
-                ctx.lineTo(x, y);
-                curPtr += 8;
+        jsGlGetUniformLocation(program_id, name_ptr, name_len) {
+            const loc = ctx.getUniformLocation(programs.get(program_id), getString(name_ptr, name_len))
+            if (!loc.id) {
+                loc.id = getNextResId()
+                uniform_locs.set(loc.id, loc)
             }
-            ctx.closePath();
-            ctx.fill();
+            return loc.id
         },
-        jsDrawPolygon(ptr, num_verts) {
-            wasmBufferView = new DataView(wasm.exports.memory.buffer);
-            ctx.beginPath();
-            var curPtr = ptr;
-            const x = wasmBufferView.getFloat32(curPtr, true);
-            const y = wasmBufferView.getFloat32(curPtr + 4, true);
-            ctx.moveTo(x, y);
-            curPtr += 8;
-            for (let i = 1; i < num_verts; i++) {
-                const x = wasmBufferView.getFloat32(curPtr, true);
-                const y = wasmBufferView.getFloat32(curPtr + 4, true);
-                ctx.lineTo(x, y);
-                curPtr += 8;
+        jsGlCreateTexture() {
+            const id = getNextResId()
+            textures.set(id, ctx.createTexture())
+            return id
+        },
+        jsGlEnable(val) {
+            ctx.enable(val)
+        },
+        jsGlDisable(val) {
+            ctx.disable(val)
+        },
+        jsGlBindTexture(target, tex_id) {
+            const tex = textures.get(tex_id)
+            ctx.bindTexture(target, tex)
+        },
+        jsGlClearColor(r, g, b, a) {
+            ctx.clearColor(r, g, b, a)
+        },
+        jsGlGetParameterInt(tag) {
+            return ctx.getParameter(tag)
+        },
+        jsGlGetFrameBufferBinding() {
+            const cur = ctx.getParameter(ctx.FRAMEBUFFER_BINDING)
+            if (cur == null) {
+                return 0
+            } else {
+                return cur.id
             }
-            ctx.closePath();
-            ctx.stroke();
         },
-        jsDrawRoundRect(x, y, width, height, radius) {
-            ctx.beginPath();
-            ctx.moveTo(x + radius, y);
-            ctx.lineTo(x + width - radius, y);
-            ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
-            ctx.lineTo(x + width, y + height - radius);
-            ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
-            ctx.lineTo(x + radius, y + height);
-            ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
-            ctx.lineTo(x, y + radius);
-            ctx.quadraticCurveTo(x, y, x + radius, y);
-            ctx.stroke();
+        jsGlCreateFramebuffer() {
+            const id = getNextResId()
+            const fb = ctx.createFramebuffer()
+            // Some ops will return the webgl fb object. Record the id on the object so it can map back to a wasm resource id.
+            fb.id = id
+            framebuffers.set(id, fb)
+            return id
         },
-        jsFillRoundRect(x, y, width, height, radius) {
-            ctx.beginPath();
-            ctx.moveTo(x + radius, y);
-            ctx.lineTo(x + width - radius, y);
-            ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
-            ctx.lineTo(x + width, y + height - radius);
-            ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
-            ctx.lineTo(x + radius, y + height);
-            ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
-            ctx.lineTo(x, y + radius);
-            ctx.quadraticCurveTo(x, y, x + radius, y);
-            ctx.fill();
+        jsGlCreateRenderbuffer() {
+            const id = getNextResId()
+            renderbuffers.set(id, ctx.createRenderbuffer())
+            return id
         },
-        jsDrawPoint(x, y) {
-            ctx.fillStyle = `rgba(${strokeColor[0]},${strokeColor[1]},${strokeColor[2]},${strokeColor[3]})`;
-            ctx.fillRect(x - ctx.lineWidth/2, y - ctx.lineWidth/2, ctx.lineWidth, ctx.lineWidth);
-            ctx.fillStyle = `rgba(${fillColor[0]},${fillColor[1]},${fillColor[2]},${fillColor[3]})`;
+        jsGlBindFramebuffer(target, id) {
+            if (id == 0) {
+                ctx.bindFramebuffer(target, null)
+            } else {
+                ctx.bindFramebuffer(target, framebuffers.get(id))
+            }
         },
-        jsDrawLine(x1, y1, x2, y2) {
-            ctx.beginPath();
-            ctx.moveTo(x1, y1);
-            ctx.lineTo(x2, y2);
-            ctx.stroke();
+        jsGlRenderbufferStorageMultisample(target, samples, internalformat, width, height) {
+            ctx.renderbufferStorageMultisample(target, samples, internalformat, width, height)
         },
-        jsDrawQuadraticBezierCurve(x1, y1, cx, cy, x2, y2) {
-            ctx.beginPath();
-            ctx.moveTo(x1, y1);
-            ctx.quadraticCurveTo(cx, cy, x2, y2);
-            ctx.stroke();
+        jsGlBindVertexArray(id) {
+            ctx.bindVertexArray(vertex_arrays.get(id))
         },
-        jsDrawCubicBezierCurve(x1, y1, c1x, c1y, c2x, c2y, x2, y2) {
-            ctx.beginPath();
-            ctx.moveTo(x1, y1);
-            ctx.bezierCurveTo(c1x, c1y, c2x, c2y, x2, y2);
-            ctx.stroke();
+        jsGlBindBuffer(target, id) {
+            ctx.bindBuffer(target, buffers.get(id))
         },
-        jsSetFontStyle(font_gid, font_size) {
-            const name = fontToName.get(font_gid);
-            ctx.font = `${font_size}px ${name}`;
+        jsGlEnableVertexAttribArray(index) {
+            ctx.enableVertexAttribArray(index)
         },
-        jsFillText(x, y, ptr, len) {
-            ctx.fillText(getString(ptr, len), x, y);
+        jsGlCreateShader(type) {
+            const id = getNextResId()
+            shaders.set(id, ctx.createShader(type))
+            return id
         },
-        jsSetLineWidth(width) {
-            ctx.lineWidth = width;
+        jsGlShaderSource(id, ptr, len) {
+            ctx.shaderSource(shaders.get(id), getString(ptr, len))
         },
-        jsTranslate(x, y) {
-            ctx.translate(x, y);
+        jsGlCompileShader(id) {
+            ctx.compileShader(shaders.get(id))
         },
-        jsScale(x, y) {
-            ctx.scale(x, y);
+        jsGlGetShaderParameterInt(id, param) {
+            return ctx.getShaderParameter(shaders.get(id), param)
         },
-        jsRotate(rad) {
-            ctx.rotate(rad);
+        jsGlGetShaderInfoLog(id, buf_size, log_ptr) {
+            const log = ctx.getShaderInfoLog(shaders.get(id))
+            const wasm_view = new Uint8Array(wasm.exports.memory.buffer)
+            const log_utf8 = text_encoder.encode(log).slice(0, buf_size)
+            wasm_view.set(log_utf8, log_ptr)
+            return log.length
         },
-        jsResetTransform() {
-            ctx.resetTransform();
-            ctx.scale(dpr, dpr);
+        jsGlDeleteShader(id) {
+            ctx.deleteShader(shaders.get(id))
+            removeResId(id)
         },
-        jsFill() {
-            ctx.fill();
+        jsGlCreateProgram() {
+            const id = getNextResId()
+            programs.set(id, ctx.createProgram())
+            return id
         },
-        jsStroke() {
-            ctx.stroke();
+        jsGlAttachShader(program_id, shader_id) {
+            const program = programs.get(program_id)
+            const shader = shaders.get(shader_id)
+            ctx.attachShader(program, shader)
         },
-        jsClosePath() {
-            ctx.closePath();
+        jsGlDetachShader(program_id, shader_id) {
+            const program = programs.get(program_id)
+            const shader = shaders.get(shader_id)
+            ctx.detachShader(program, shader)
         },
-        jsMoveTo(x, y) {
-            ctx.moveTo(x, y);
+        jsGlLinkProgram(id) {
+            ctx.linkProgram(programs.get(id))
         },
-        jsLineTo(x, y) {
-            ctx.lineTo(x, y);
+        jsGlGetProgramParameterInt(id, param) {
+            return ctx.getProgramParameter(programs.get(id), param)
         },
-        jsQuadraticCurveTo(cx, cy, x2, y2) {
-            ctx.quadraticCurveTo(cx, cy, x2, y2);
+        jsGlGetProgramInfoLog(id, buf_size, log_ptr) {
+            const log = ctx.getProgramInfoLog(programs.get(id))
+            const wasm_view = new Uint8Array(wasm.exports.memory.buffer)
+            const log_utf8 = text_encoder.encode(log).slice(0, buf_size)
+            wasm_view.set(log_utf8, log_ptr)
+            return log.length
         },
-        jsCubicCurveTo(c1x, c1y, c2x, c2y, x2, y2) {
-            ctx.bezierCurveTo(c1x, c1y, c2x, c2y, x2, y2);
+        jsGlDeleteProgram(id) {
+            ctx.deleteProgram(programs.get(id))
+            removeResId(id)
         },
-        jsCreateImage(promiseId, ptr, len) {
-            // Use fetch so we can detect the image type in the future.
-            const svg = getString(ptr, len).endsWith(".svg");
-            fetch(getString(ptr, len))
-                .then(resp => resp.arrayBuffer())
-                .then(buf => {
-                    let blob;
-                    if (svg) {
-                        // NOTE: Firefox requires width and height attributes on the svg element or it won't load the image:
-                        // https://bugzilla.mozilla.org/show_bug.cgi?id=700533
-                        blob = new Blob([buf], {type: 'image/svg+xml'});
-                    } else {
-                        blob = new Blob([buf]);
-                    }
-                    const url = URL.createObjectURL(blob);
-                    const img = new Image();
-                    const imageId = nextImageId;
-                    images.set(imageId, img);
-                    nextImageId += 1;
-                    img.onload = function() {
-                        wasm.exports.wasmResolveImagePromise(promiseId, imageId, this.width, this.height);
-                        URL.revokeObjectURL(url);
-                    };
-                    img.svg = svg;
-                    img.src = url;
-                });
+        jsGlCreateVertexArray() {
+            const id = getNextResId()
+            vertex_arrays.set(id, ctx.createVertexArray())
+            return id
         },
-        jsDrawImageSized(imageId, x, y, width, height) {
-            const img = images.get(imageId);
-            ctx.drawImage(img, x, y, width, height);
+        jsGlTexParameteri(target, pname, param) {
+            ctx.texParameteri(target, pname, param)
         },
-        jsDrawImage(imageId, x, y) {
-            const img = images.get(imageId);
-            ctx.drawImage(img, x, y);
+        jsGlTexImage2D(target, level, internal_format, width, height, border, format, type, pixels_ptr) {
+            if (pixels_ptr == 0) {
+                // Initialize buffer with undefined values.
+                ctx.texImage2D(target, level, internal_format, width, height, border, format, type, null)
+            } else {
+                ctx.texImage2D(target, level, internal_format, width, height, border, format, type, new Uint8Array(wasm.exports.memory.buffer), pixels_ptr)
+            }
         },
-        jsGetFont: jsGetFont,
-        jsAddFont(pathPtr, pathLen, namePtr, nameLen) {
-            const path = getString(pathPtr, pathLen);
-            const name = getString(namePtr, nameLen);
-            const style = document.createElement('style');
-            style.textContent = `
-                @font-face {
-                    font-family: '${name}';
-                    src: url('${path}') format('truetype');
-                }
-            `;
-            document.head.append(style);
-            return jsGetFont(namePtr, nameLen);
+        jsGlTexSubImage2D(target, level, xoffset, yoffset, width, height, format, type, pixels_ptr) {
+            ctx.texSubImage2D(target, level, xoffset, yoffset, width, height, format, type, new Uint8Array(wasm.exports.memory.buffer), pixels_ptr)
+        },
+        jsGlCreateBuffer() {
+            const id = getNextResId()
+            buffers.set(id, ctx.createBuffer())
+            return id
+        },
+        jsGlVertexAttribPointer(index, size, type, normalized, stride, offset) {
+            ctx.vertexAttribPointer(index, size, type, normalized, stride, offset)
+        },
+        jsGlActiveTexture(tex) {
+            // tex is a gl.TEXTUREI and not a resource id.
+            ctx.activeTexture(tex)
+        },
+        jsGlDeleteTexture(id) {
+            ctx.deleteTexture(textures.get(id))
+            removeResId(id)
+        },
+        jsGlUseProgram(id) {
+            ctx.useProgram(programs.get(id))
+        },
+        jsGlUniformMatrix4fv(location, transpose, value_ptr) {
+            const loc = uniform_locs.get(location)
+            const wasm_view = new Uint8Array(wasm.exports.memory.buffer)
+            ctx.uniformMatrix4fv(loc, transpose, new Float32Array(wasm_view.slice(value_ptr, value_ptr + 16*4).buffer))
+        },
+        jsGlUniform1i(location, val) {
+            const loc = uniform_locs.get(location)
+            ctx.uniform1i(loc, val)
+        },
+        jsGlBufferData(target, data_ptr, data_size, usage) {
+            const wasm_view = new Uint8Array(wasm.exports.memory.buffer)
+            ctx.bufferData(target, wasm_view, usage, data_ptr, data_size)
+        },
+        jsGlDrawElements(mode, num_indices, index_type, index_offset) {
+            ctx.drawElements(mode, num_indices, index_type, index_offset)
+        },
+        jsGlBindRenderbuffer(target, id) {
+            ctx.bindRenderbuffer(target, renderbuffers.get(id))
+        },
+        jsGlFramebufferRenderbuffer(target, attachment, renderbuffertarget, renderbuffer) {
+            ctx.framebufferRenderbuffer(target, attachment, renderbuffertarget, renderbuffers.get(renderbuffer))
+        },
+        jsGlFramebufferTexture2D(target, attachment, textarget, texture, level) {
+            ctx.framebufferTexture2D(target, attachment, textarget, textures.get(texture), level)
+        },
+        jsGlViewport(x, y, width, height) {
+            ctx.viewport(x, y, width, height)
+        },
+        jsGlClear(mask) {
+            ctx.clear(mask)
+        },
+        jsGlBlendFunc(sfactor, dfactor) {
+            ctx.blendFunc(sfactor, dfactor)
+        },
+        jsGlBlitFramebuffer(srcX0, srcY0, srcX1, srcY1, dstX0, dstY0, dstX1, dstY1, mask, filter) {
+            ctx.blitFramebuffer(srcX0, srcY0, srcX1, srcY1, dstX0, dstY0, dstX1, dstY1, mask, filter)
+        },
+        jsGlBlendEquation(mode) {
+            ctx.blendEquation(mode)
+        },
+        jsGlScissor(x, y, width, height) {
+            ctx.scissor(x, y, width, height)
+        },
+        jsGlCheckFramebufferStatus(target) {
+            return ctx.checkFramebufferStatus(target)
+        },
+        jsGlDeleteVertexArray(id) {
+            ctx.deleteVertexArray(vertex_arrays.get(id))
+        },
+        jsGlDeleteBuffer(id) {
+            ctx.deleteBuffer(buffers.get(id))
         },
     }
 }
